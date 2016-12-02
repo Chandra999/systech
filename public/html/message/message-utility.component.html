@@ -1,1 +1,7 @@
-<div *ngIf="showError"><h3>Error goes here!!</h3></div>
+<div>
+    <div class="msg-container" *ngIf="showError" [@animate]="'visible'">
+        <div class="icon-info"></div>
+        <div class="msg">Error!! {{msg.message}}</div>
+        <div class="msg-close" (click)="closeError()"><a>X</a></div>
+    </div>
+</div>

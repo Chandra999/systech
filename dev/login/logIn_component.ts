@@ -158,7 +158,6 @@ export class LoginComponent implements OnInit {
     changeUser = false;
     changePassword = false;
     subscription: Subscription;
-    public handleError$: EventEmitter<JSON>;
      @ViewChild(MessageUtilityComponent)
      private msgUtilityComp: MessageUtilityComponent;
     // @ViewChild('modal')
@@ -172,7 +171,6 @@ export class LoginComponent implements OnInit {
                     validator: matchingPasswords('password', 'verifyPassword')
                 })
         }
-        this.handleError$ = new EventEmitter<JSON>();
     }
 
     ngOnInit() {
