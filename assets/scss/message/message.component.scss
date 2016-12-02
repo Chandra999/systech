@@ -1,0 +1,105 @@
+#message-content {
+    overflow: hidden;
+}
+
+p {
+    margin: 0;
+    padding: 0 5px 5px 5px;
+}
+
+div#toggle-details {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    width: 15px;
+    height: 15px;
+    background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4NCjwhLS0gR2VuZXJhdG9yOiBBZG9iZSBJbGx1c3RyYXRvciAxNi4yLjEsIFNWRyBFeHBvcnQgUGx1Zy1JbiAuIFNWRyBWZXJzaW9uOiA2LjAwIEJ1aWxkIDApICAtLT4NCjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+DQo8c3ZnIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4Ig0KCSB3aWR0aD0iNTEycHgiIGhlaWdodD0iNTEycHgiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiB4bWw6c3BhY2U9InByZXNlcnZlIj4NCjxnPg0KCTxwYXRoIGQ9Ik0yNTYsNDhDMTQxLjEyNSw0OCw0OCwxNDEuMTI1LDQ4LDI1NnM5My4xMjUsMjA4LDIwOCwyMDhzMjA4LTkzLjEyNSwyMDgtMjA4UzM3MC44NzUsNDgsMjU2LDQ4eiBNMjU2LDMyMGwtOTYtOTZoMTkyDQoJCUwyNTYsMzIweiIvPg0KPC9nPg0KPC9zdmc+DQo=);
+    background-size: 15px;
+    background-repeat: no-repeat;
+}
+
+div#toggle-details-container {
+    position: relative;
+}
+
+#message-content #close-button {
+    transition: 50ms linear;
+    cursor: pointer;
+    float: right;
+    z-index: 1000;
+    margin-right: 5px;
+}
+
+h5 {
+    margin: 0;
+    padding: 15px 0 15px;
+}
+
+#message-content #close-button:hover {
+    transition: 50ms linear;
+    transform: translateY(-2px);
+}
+
+#message-content #close-button:active {
+    transition: 50ms linear;
+    transform: translateY(0);
+}
+
+#message-key {
+    font-weight: bold;
+    line-height: 14px;
+    font-size: 11px;
+    margin: 0 10px 5px 12px;
+}
+
+#message-message {
+    font-size: 16px;
+    margin: 0px 5px;
+    padding: 0 0 5px 0;
+}
+
+#message-action {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 12px;
+    color: rgba(10.2%, 10.2%, 10.2%, .7);
+}
+
+#message-suggestion {
+    font-weight: normal;
+    padding-right: 20px;
+}
+
+#message-content main {
+    box-shadow: 0px 2px 5px black;
+}
+
+#message-content #message-action {
+    position: relative;
+    padding: 5px 15px 0 15px;
+}
+
+#message-content #message-action:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 25%;
+    width: 50%;
+    height: 1px;
+    border-top: 1px dotted rgba(100,100,100,.3);
+}
+
+.error {
+    border-left: 7px solid #a94442;
+}
+
+.warning {
+    border-left: 7px solid #f99c25;
+    /*border-left: 7px solid #3b73b9;*/
+    /*border-left: 7px solid #3366ce;*/
+}
+
+.success {
+    border-left: 7px solid #8dc63f;
+    border-left: 7px solid #42A948;
+}

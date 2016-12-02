@@ -1,0 +1,130 @@
+{
+  "videos": [
+    {
+      "id": "1",
+      "title": "Add User",
+      "path": "public/video/video.mp4",
+      "description": "Create a new user profile in 1 minute.",
+      "time": "1:00",
+      "rating": 250,
+      "comments": [
+        {
+          "commentedBy": "cindy",
+          "comment": "hi",
+          "date":"10/13/2016, 6:42:44 AM"
+        },
+        {
+          "commentedBy": "vaibhav",
+          "comment": "Nice Video",
+          "date":"10/13/2016, 7:42:44 AM"
+        }
+      ],
+      "views": 5678
+    },
+    {
+      "id": "2",
+      "title": "Update User",
+      "path": "public/video/video2.mp4",
+      "description": "Update a user's profile.",
+      "time": "1:20",
+      "rating": 115,
+      "comments": [
+        {
+          "commentedBy": "cindy",
+          "comment": "hi",
+          "date":"10/13/2016, 6:42:44 AM"
+        },
+        {
+          "commentedBy": "vaibhav",
+          "comment": "Nice Video",
+          "date":"10/13/2016, 7:42:44 AM"
+        }
+      ],
+      "views": 4568
+    },
+    {
+      "id": "3",
+      "title": "Add user to group",
+      "path": "public/video/video3.mp4",
+      "description": "Adding a user to a group.",
+      "time": "1:53",
+      "rating": 100,
+      "comments": [
+        {
+          "commentedBy": "cindy",
+          "comment": "hi",
+          "date":"10/13/2016, 6:42:44 AM"
+        },
+        {
+          "commentedBy": "vaibhav",
+          "comment": "Nice Video",
+          "date":"10/13/2016, 7:42:44 AM"
+        }
+      ],
+      "views": 78
+    },
+    {
+      "id": "4",
+      "title": "Assign role",
+      "path": "public/video/video.mp4",
+      "description": "Assigning a role to a group.",
+      "time": "0:50",
+      "rating": 1240,
+      "comments": [
+        {
+          "commentedBy": "cindy",
+          "comment": "hi",
+          "date":"10/13/2016, 6:42:44 AM"
+        },
+        {
+          "commentedBy": "vaibhav",
+          "comment": "Nice Video",
+          "date":"10/13/2016, 7:42:44 AM"
+        }
+      ],
+      "views": 456
+    },
+    {
+      "id": "5",
+      "title": "Delete user",
+      "path": "public/video/video2.mp4",
+      "description": "Deleting a user's profile.",
+      "time": "1:50",
+      "rating": 254,
+      "comments": [
+        {
+          "commentedBy": "cindy",
+          "comment": "hi",
+          "date":"10/13/2016, 6:42:44 AM"
+        },
+        {
+          "commentedBy": "vaibhav",
+          "comment": "Nice Video",
+          "date":"10/13/2016, 7:42:44 AM"
+        }
+      ],
+      "views": 505
+    },
+    {
+      "id": "6",
+      "title": "send invitation",
+      "path": "public/video/video3.mp4",
+      "description": "Send/Resend Invitation.",
+      "time": "1:40",
+      "rating": 350,
+      "comments": [
+        {
+          "commentedBy": "cindy",
+          "comment": "hi",
+          "date":"10/13/2016, 6:42:44 AM"
+        },
+        {
+          "commentedBy": "vaibhav",
+          "comment": "Nice Video",
+          "date":"10/13/2016, 7:42:44 AM"
+        }
+      ],
+      "views": 452
+    }
+  ]
+}

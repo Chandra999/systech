@@ -1,0 +1,23 @@
+{
+   "UserGroups": [
+           {
+             "value":0,
+             "status":true,
+             "name":"UniSign",
+             "description":"UniSign Group"
+           },
+           {
+             "value":1,
+             "status":false,
+             "name":"BabyProducts",
+             "description":"Baby Product Group"
+           },
+           {
+             "value":2,
+             "status":true,
+             "name":"BigBoss",
+             "description":"A group for all the big bosses"
+           }
+
+   ]
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <base href="/">
+    <title>Systech UniSecure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <META HTTP-EQUIV="CACHE-CONTROL" CONTENT="NO-CACHE">
+
+    <!-- 1. Load libraries -->
+    <!-- Polyfill(s) for older browsers -->
+    <script src="node_modules/core-js/client/shim.min.js"></script>
+    <script src="node_modules/zone.js/dist/zone.js"></script>
+    <script src="node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+
+    <!--<script src="node_modules/fuel-ui/bundles/fuel-ui.min.js"></script>-->
+    <link rel="stylesheet" href="public/css/common/toaster.css" />
+    <link rel="stylesheet" href="node_modules/ng2-dnd/style.css">
+    <link rel="stylesheet" href="node_modules/font-awesome/css/font-awesome.min.css" />
+    <!--<link rel="stylesheet" href="node_modules/fuel-ui/bundles/fuel-ui.min.css" />-->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="public/css/app.css">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Orbitron" />
+    <script src="public/js/anchorButton.min.js"></script>
+    <script src="public/js/fileSaver.min.js"></script>
+
+</head>
+
+<body>
+    <!-- 2. Configure SystemJS -->
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('app/boot').then(null, console.error.bind(console));
+    </script>
+    </head>
+
+    <!-- 3. Display the application -->
+    <body>
+        <systech-unisecure>Loading...</systech-unisecure>
+    </body>
+</html>
+</body>

@@ -1,0 +1,28 @@
+$default-font : 'Montserrat',Arial, sans-serif;
+
+.iconDetails {
+   margin-left:2%;
+   float:left; 
+   height:64px;
+   width:64px;	
+} 
+
+.container2 {
+	width:100%;
+	height:auto;
+    min-height: 100px;
+	padding:1%;
+}
+
+h4 {
+    margin:0px;
+    font-family: $default-font !important;
+    font-weight:bold;
+}
+
+.message{
+    font-family: $default-font !important;
+    font-size:16px;
+    float:left;
+    font-weight:bold;
+}

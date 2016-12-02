@@ -1,0 +1,71 @@
+$default-font : 'Montserrat',Arial, sans-serif;
+$theme-color:#3b73b9;
+$second-color: #3366CE;
+$border-radius:5px;
+
+.login-card {
+    box-shadow: 0 2px 4px 0 #3b73b9,0 2px 10px 0 #3b73b9 !important;
+    position: fixed;
+    top: 115px;
+    height: 500px;
+    top:20%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,0);
+    width:420px;
+    background-color:white;
+    color:#3b73b9
+}
+
+.login-welcome-header{
+    display:  inline-block;
+    padding-right:8px;
+    padding-top:20px;
+    font-size:25px
+}
+
+.login-page{
+    width:100%;
+    height:100%;
+    background-image: url('public/img/JHCloud3.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.login-welcome-image{
+    width:180px;
+    top: 50%;
+    margin-top: -14px;
+}
+
+.forget-username-card {
+    box-shadow: 0 2px 4px 0 #3b73b9,0 2px 10px 0 #3b73b9 !important;
+    position: fixed;
+    top: 115px;
+    height: 300px;
+    top:20%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,0);
+    width:420px;
+    background-color:white;
+    color:#3b73b9
+}
+
+.reset-password-card{
+    box-shadow: 0 2px 4px 0 #3b73b9,0 2px 10px 0 #3b73b9 !important;
+    position: fixed;
+    top: 115px;
+    top:20%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%,0);
+    width:420px;
+    background-color:white;
+    color:#3b73b9;
+    margin: auto;
+    display:inline-block;
+
+}

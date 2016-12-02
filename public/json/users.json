@@ -1,0 +1,45 @@
+{
+    "Users": [
+        {
+            "value": 0,
+            "name": "Bob Philips",
+            "image": "public/img/BobPhilips.png"
+        },
+        {
+            "value": 1,
+            "name": "Brian Basho",
+            "image": "public/img/BrianBasho.png"
+        },
+        {
+            "value": 2,
+            "name": "Cindy Jin",
+            "image": "public/img/CindyJin.png"
+        },
+        {
+            "value": 3,
+            "name": "Daniel Stanca",
+            "image": "public/img/DanielStanca.png"
+        },
+        {
+            "value": 4,
+            "name": "Dave Henderson",
+            "image": "public/img/DaveHenderson.png"
+        },
+        {
+            "value": 5,
+            "name": "James Lee",
+            "image": "public/img/JamesLee.png"
+        },
+        {
+            "value": 6,
+            "name": "Michele Tash",
+            "image": "public/img/MicheleTash.png"
+        },
+        {
+            "value": 7,
+            "name": "Vincent Bocelli",
+            "image": "public/img/VincentBocelli.png"
+        }
+    ]
+
+}

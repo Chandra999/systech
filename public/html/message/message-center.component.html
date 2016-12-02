@@ -1,0 +1,37 @@
+<main>
+   
+    <div  id="toggle" (click)="toggle()" title="Message Center">
+         <span style="font-size: 20px;color:#3b73b9;" class="glyphicon glyphicon-bell"></span>
+        <div  id="message-notif" *ngIf="showTag">
+            <p>{{messages.length}}</p>
+        </div>
+    </div>  
+
+    
+    <div *ngIf="!bottom">
+    <div  id="message-center" *ngIf="show" [@animate]="'visible'" style="z-index:2;" [ngStyle]="{'width': dynWidth + 'px'}">
+        <app-nav-bar [length]="messages.length"></app-nav-bar>
+        <div id="msgs" [ngStyle]="{'overflow': scrollbar,'max-height':maxheight}">
+            <div *ngIf="messages.length===0">
+                <p><em>No messages to show</em></p>
+            </div>
+            <div *ngFor="let msg of messages; let i=index" msgComp [message]="msg" (closeMessage)="remove($event)" (expandMessage)="refresh($event)"
+                [class.lastMessage]="i===(messages.length-1)" class="message">
+            </div>
+        </div>
+    </div>
+    </div>
+    <div *ngIf="bottom">
+    <div  id="message-center-bottom" *ngIf="show" [@animate]="'visible'" style="z-index:2;" [ngStyle]="{'width': dynWidth + 'px'}">
+        <app-nav-bar [length]="messages.length"></app-nav-bar>
+        <div id="msgs" [ngStyle]="{'overflow': scrollbar,'max-height':maxheight}">
+            <div *ngIf="messages.length===0">
+                <p><em>No messages to show</em></p>
+            </div>
+            <div *ngFor="let msg of messages; let i=index" msgComp [message]="msg" (closeMessage)="remove($event)" (expandMessage)="refresh($event)"
+                [class.lastMessage]="i===(messages.length-1)" class="message">
+            </div>
+        </div>
+    </div>
+    </div>
+</main>

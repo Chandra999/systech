@@ -1,0 +1,213 @@
+
+.menu {
+
+ }
+/* ------------------------- Separate line ------------------------- */
+.menu4, .menu {
+  font-size: 14px;
+  top: 52.5%;
+  position: relative;
+ 
+}
+.menu-button4, .menu-button {
+  display:none;
+}
+
+.menu-button4:checked + .menu-button-icon4,
+.menu-button:checked + .menu-button-icon {
+  -webkit-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+   -moz-transform:scale(0.8, 0.8) translate3d(0, 0, 0);
+   -o-transform:scale(0.8, 0.8) translate3d(0, 0, 0);
+   -ms-transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+   transform: scale(0.8, 0.8) translate3d(0, 0, 0);
+   
+   -webkit-transition: 0.2s linear;
+   -moz-transition:  0.2s  linear;
+   -o-transition:0.2s  linear;
+   -ms-transition:0.2s  linear;
+   transition:0.2s  linear;
+
+}
+
+.menu-button4:checked ~ .menu-item4,  
+.menu-button:checked ~ .menu-item {
+   -webkit-transition-timing-function:  cubic-bezier(0.935, 0, 0.34, 1.33);
+   -moz-transition-timing-function:   cubic-bezier(0.935, 0, 0.34, 1.33);
+   -o-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+   -ms-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+  transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+.menu-button4:checked ~ .menu-item4:nth-of-type(1),
+.menu-button:checked ~ .menu-item:nth-of-type(1) {
+  -webkit-transition-duration: 0.20s;
+  -moz-transition-duration: 0.20s;
+  -o-transition-duration: 0.20s;
+  -ms-transition-duration: 0.20s;
+  transition-duration: 0.20s;
+  -webkit-transform: translate3d(0px, -40px, 0);
+  -moz-transform: translate3d(0px, -40px, 0);
+  -o-transform: translate3d(0px, -40px, 0);
+  -ms-transform: translate3d(0px, -40px, 0);
+  transform: translate3d(0px, -40px, 0);
+  background: #3b73b9  ;
+    border:2px solid #3366CE ;
+    color: white;
+}
+.menu-button4:checked ~ .menu-item4:nth-of-type(2),
+.menu-button:checked ~ .menu-item:nth-of-type(2) {
+  -webkit-transition-duration: 0.40s;
+  -moz-transition-duration: 0.40s;
+  -o-transition-duration: 0.40s;
+  -ms-transition-duration: 0.40s;
+  transition-duration: 0.40s;
+ 
+  -webkit-transform: translate3d(34.64px, -20px, 0);
+  -moz-transform: translate3d(34.64px, -20px, 0);
+  -o-transform: translate3d(34.64px, -20px, 0);
+  -ms-transform: translate3d(34.64px, -20px, 0);
+  transform: translate3d(34.64px, -20px, 0);
+  
+  background: #3b73b9 ;
+  border:2px solid #3366CE ;
+  color: white;
+}
+.menu-button4:checked ~ .menu-item4:nth-of-type(3),
+.menu-button:checked ~ .menu-item:nth-of-type(3) {
+  -webkit-transition-duration: 0.60s;
+  -moz-transition-duration: 0.60s;
+  -o-transition-duration: 0.60s;
+  -ms-transition-duration: 0.60s;
+  transition-duration: 0.60s;
+  
+  -webkit-transform: translate3d(34.64px, 20px, 0);
+  -moz-transform: translate3d(34.64px, 20px, 0);
+  -o-transform: translate3d(34.64px, 20px, 0);
+  -ms-transform: translate3d(34.64px, 20px, 0);
+  transform: translate3d(34.64px, 20px, 0);
+  
+  background: #3b73b9 ;
+  border:2px solid #3366CE ;
+  color: white;
+}
+.menu-button4:checked ~ .menu-item4:nth-of-type(4),
+.menu-button:checked ~ .menu-item:nth-of-type(4) {
+  -webkit-transition-duration: 0.8s;
+  -moz-transition-duration: 0.8s;
+  -o-transition-duration: 0.8s;
+  -ms-transition-duration: 0.8s;
+  transition-duration: 0.8s;
+  
+  -webkit-transform: translate3d(0px, 40px, 0);
+  -moz-transform: translate3d(0px, 40px, 0);
+  -o-transform: translate3d(0px, 40px, 0);
+  -ms-transform: translate3d(0px, 40px, 0);
+  transform: translate3d(0px, 40px, 0);
+  background: #3b73b9 ;
+  color: white;
+  border:2px solid #3366CE ;
+}
+.menu-button4:checked ~ .menu-item4:nth-of-type(5),
+.menu-button:checked ~ .menu-item:nth-of-type(5) {
+  -webkit-transition-duration: 1.00s;
+  -moz-transition-duration: 1.00s;
+  -o-transition-duration: 1.00s;
+  -ms-transition-duration: 1.00s;
+  transition-duration: 1.00s;
+
+  -webkit-transform:translate3d(-34.64px, 20px, 0);
+  -moz-transform: translate3d(-34.64px, 20px, 0);
+  -o-transform: translate3d(-34.64px, 20px, 0);
+  -ms-transform: translate3d(-34.64px, 20px, 0);
+  transform: translate3d(-34.64px, 20px, 0);
+  background: #3b73b9 ;
+  border:2px solid #3366CE ;
+  color: white;
+}
+.menu-button4:checked ~ .menu-item4:nth-of-type(6),
+.menu-button:checked ~ .menu-item:nth-of-type(6) { 
+  -webkit-transition-duration: 1.20s;
+  -moz-transition-duration: 1.20s;
+  -o-transition-duration: 1.20s;
+  -ms-transition-duration: 1.20s;
+  transition-duration: 1.20s;
+  
+  -webkit-transform: translate3d(-34.64px, -20px, 0);
+  -moz-transform:  translate3d(-34.64px, -20px, 0);
+  -o-transform:  translate3d(-34.64px, -20px, 0);
+  -ms-transform:  translate3d(-34.64px, -20px, 0);
+  transform: translate3d(-34.64px, -20px, 0);
+  background: #3b73b9 ;
+  border:2px solid #3366CE ;
+  color: white;
+}
+
+
+
+
+.menu-button-icon4,.menu-button-icon {
+    background: #3b73b9 none repeat scroll 0 0;
+    border-radius: 100%;
+    color: #fff;
+    cursor: pointer;
+    height: 30px;
+    text-align: center;
+    width: 30px;
+    z-index: 20;
+    position: relative;
+    top:3px;
+
+}
+.menu-button-icon4:hover, 
+.menu-button-icon:hover {
+  transform: scale(1.0,1.0) translate3d(0, 0, 0);
+}
+ 
+ 
+.menu-item4,.menu-item {
+  background: #3b73b9 ;
+  border-radius: 100%;
+  color: #3b73b9;
+  font-size: 12px;
+  
+  position: absolute;
+  text-align: center;
+
+  top:5px;
+  left:5px;
+  height:22px;
+  width: 22px;
+  z-index:10;
+}
+.menu-item4:nth-of-type(1),
+.menu-item:nth-of-type(1) {
+  transition-duration: 0.10s;
+}
+.menu-item4:nth-of-type(2),
+.menu-item:nth-of-type(2) {
+  transition-duration: 0.10s;
+}
+.menu-item4:nth-of-type(3),
+.menu-item:nth-of-type(3) {
+  transition-duration: 0.10s;
+}
+.menu-item4:nth-of-type(4),
+.menu-item:nth-of-type(4) {
+  transition-duration: 0.10s;
+}
+.menu-item4:nth-of-type(5),
+.menu-item:nth-of-type(5) {
+  transition-duration: 0.10s;
+}
+.menu-item4:nth-of-type(6),
+.menu-item:nth-of-type(6) {
+  transition-duration: 0.10s;
+}
+.menu-item:hover {
+    color:#3b73b9;
+    background: transparent;
+	border: 0px solid #3b73b9;
+}
+.menu-item:active,
+.menu-item:focus {
+  border: 0px solid #3b73b9;
+}

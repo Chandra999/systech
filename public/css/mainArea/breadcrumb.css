@@ -1,0 +1,73 @@
+#breadcrumb {
+  margin-bottom: 20px;
+  line-height: 30px;
+  color: white;
+  padding: 1px;
+  border: 0px solid #3b73b9;
+  font-weight: bold;
+  list-style: none;
+  display: inline-block; }
+  #breadcrumb li {
+    float: left; }
+    #breadcrumb li a {
+      display: block;
+      background: #3b73b9;
+      padding-right: 10px;
+      height: 30px;
+      margin-right: 31px;
+      position: relative;
+      text-decoration: none;
+      color: white; }
+      #breadcrumb li a:last-of-type {
+        margin-right: 25px; }
+      #breadcrumb li a::before {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        left: -22px;
+        border: 15px solid transparent;
+        border-color: #3b73b9;
+        border-left-color: transparent; }
+      #breadcrumb li a:after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        position: absolute;
+        top: 0;
+        right: -30px;
+        border: 15px solid transparent;
+        border-left-color: #3b73b9; }
+      #breadcrumb li a:first-of-type {
+        padding-left: 10px; }
+        
+        #breadcrumb :first-child a::before {
+           display: none;
+         }
+        
+      #breadcrumb li a:hover {
+        background: #00b0ec;
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;  
+        }
+        
+       
+        
+        #breadcrumb li a:hover:before {
+          border-color: #00b0ec;
+          border-left-color: transparent; }
+        #breadcrumb li a:hover:after {
+          border-left-color: #00b0ec; }
+          
+          
+        #breadcrumb li a:active {
+        background: #00b0ec;
+        color: #fff;
+        text-decoration: none;
+        }
+          
+          

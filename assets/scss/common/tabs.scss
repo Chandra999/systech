@@ -1,0 +1,73 @@
+$default-font : 'Montserrat',Arial, sans-serif;
+$theme-color:#3b73b9;
+$text_color:#58595b;
+.uni-tabs {
+	background: white;
+	height: 30px;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+    border-bottom: 0px;
+    font-family: $default-font;
+    font-size: 16px ;
+    color:$theme-color;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    
+    li {
+        display: block;
+        position: relative;
+        float: left;
+        
+         a { 
+                display: block;
+                text-decoration: none;
+                color: $theme-color;
+                padding: 0 9px 0px 9px;
+                margin-left: 3px;
+                white-space: nowrap;
+                outline: none;
+                border-bottom :3px  solid #BBB;
+                
+               
+                &:hover{
+                    cursor:pointer;
+                }
+                
+                 &:active{
+                    color: $theme-color;
+                     font-weight: bold;
+                }
+            }
+    }
+}
+
+ .active{
+          color: $theme-color !important; 
+
+          a{
+                 color: $theme-color !important;
+                 border-bottom :3px  solid $theme-color !important;
+                 font-weight: bold;
+                 
+                 &:after {
+                    content: "";
+                    position: absolute;
+                    top: 21px;
+                    left: 50%;
+                    margin-left: -8px;
+                    width: 0px;
+                    height: 0px;
+                    border-left: 8px solid transparent;
+                    border-right: 8px solid transparent;
+                    border-top :6px  solid $theme-color !important;
+             }
+          }
+   }
+   
+   .uni-tab-container{
+       margin-top: 0px ;
+       border:1px solid #3b73b9;
+       border-radius: 8px;
+   }

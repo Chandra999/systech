@@ -1,0 +1,125 @@
+.topItem{
+    height: 36px;
+    padding:10px 10px 0px 10px;
+
+    a{
+        padding-left : 2px;
+        float:left;
+        margin-top:2px;
+    }
+}
+
+.topItemIconLink{
+   display :inline;
+   margin-top:1px;
+
+}
+
+.rotate{
+    -moz-transition: all 0.1s linear;
+    -webkit-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.rotate.down{
+    -moz-transform:rotate(90deg);
+    -webkit-transform:rotate(90deg);
+    transform:rotate(90deg);
+}
+
+.assetTypeIcon{
+    display :inline-block;
+}
+
+.assetTypeLink{
+    color:white;
+    cursor: pointer;
+    display :inline-block;
+}
+
+.inner-nav {
+	display: none;
+	list-style: none;
+    font-size: 0px;
+    background-color : #eff;
+
+    li {
+	margin: 3px 0px 3px 3px;
+    font-size: 14px;
+    }
+
+    a {
+	padding: 5px 0px 5px 2px;
+    display: inline-block;
+	text-decoration: none;
+	text-align: center;
+	color: #3366CE;
+
+    &:hover {
+	background-color: #00b0ec;
+	color: white;
+    margin: 0px;
+    cursor: pointer;
+    }
+    }
+}
+
+.inner-nav-icon {
+	display: inline-block;
+	background-color: transparent;
+	margin-top: 4px;
+	margin-left: 2px;
+  margin-right: 5px;
+  background-size: contain;
+	height: 16px;
+	width: 16px;
+    background-repeat: no-repeat;
+}
+
+#Family-icon{
+	background-image: url('public/img/unisecure_icon_family_nav.png');
+    background-repeat: no-repeat;
+}
+
+#Calender-icon {
+	background-image: url('public/img/unisecure_icon_calendar_nav.svg');
+}
+
+#LifeCycle-icon {
+	background-image: url('public/img/unisecure_icon_cycle_sketch01b_2_nav.svg');
+}
+
+#PackageProfile-icon {
+	background-image: url('public/img/unisecure_icon_packageprofile_nav.png');
+}
+
+#Product-icon {
+	background-image: url('public/img/unisecure_icon_product_nav.png');
+}
+
+#ItemRun-icon {
+	background-image: url('public/img/unisecure_icon_itemrun_nav.svg');
+}
+
+#Action-icon{
+    background-image: url('public/img/web_icon_action_nav.svg');
+}
+
+#PublishedFamily-icon{
+    background-image: url('public/img/unisecure_icon_family_nav.svg');
+}
+
+.glyphicon-refresh-animate {
+    -animation: spin .7s infinite linear;
+    -webkit-animation: spin2 .7s infinite linear;
+}
+
+@-webkit-keyframes spin2 {
+    from { -webkit-transform: rotate(0deg);}
+    to { -webkit-transform: rotate(360deg);}
+}
+
+@keyframes spin {
+    from { transform: scale(1) rotate(0deg);}
+    to { transform: scale(1) rotate(360deg);}
+}

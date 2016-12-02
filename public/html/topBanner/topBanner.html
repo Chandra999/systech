@@ -1,0 +1,40 @@
+<div class="header">
+  <div class="uni-container top" style="z-index:4">
+    <div style="float:left;">
+      <img src="public/img/Systech_S_Mark_FullColor.png" alt="UniSecure" style="width:64px;" />
+      <img src="public/img/SYS_UniSecure.png" alt="UniSecure" style="width:300px;" />
+    </div>
+    <div [hidden]="hide()" style="float:right; margin-right:80px;">
+      <div class="dropdown">
+        <img [src]="getImagePath()" style="border-radius: 50%;width :32px; height :32px; float:left; margin: 0px; border:1px solid #8dc63f">
+        <a class="dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" style="margin-left:4px">
+          {{getLoginUser()}}
+          <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu uni-card-2" aria-labelledby="dropdownMenu1">
+          <li><a (click)=getPreferences()>Preferences</a></li>
+          <li [hidden]="!isVisible()" role="separator" class="divider"></li>
+          <li [hidden]="!isVisible()" *ngFor="let role of getSwitchRoles()"><a (click)="roleSelected(role)">Go to {{role}}</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a href="#">Download SDK</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a (click)=logout()>Logout</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="topnav uni-card2" style="position: fixed; top: 68px; padding:0px; color :white; z-index:3">
+    <div style="overflow:auto">
+      <div style="overflow:hidden;height:44px; padding-right:50px;z-index:1">
+        <a [hidden]= "hide('UniTrace')" style="float:right;" id="topnavbtn_home" title="UniTrace" href= {{uniTraceURL}}>
+          <i style="display: inline; margin-right:5px "></i>UniTrace
+        </a>
+        <a [hidden]= "hide('Preferences')" style="float:right;" id="topnavbtn_home" title="Preferences" (click)=getPreferences()>
+          <i style="display: inline; margin-right:5px "></i>Preferences
+        </a>
+        <a [hidden]= "hide('Welcome')"  style="float:right;" id="topnavbtn_home" (click)=homeClicked() title="Welcome">
+          <i class="glyphicon  glyphicon-home" style="display: inline; margin-right:5px "></i>Welcome
+        </a>
+      </div>
+    </div>
+  </div>

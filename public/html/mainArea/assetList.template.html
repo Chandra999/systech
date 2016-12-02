@@ -1,0 +1,114 @@
+<div class="table-responsive" style="overflow-x:visible; width:98%;">
+	<table class='uni-table'>
+		<tr>
+			<th>
+				<label style="display: block;" [hidden]="allSelect">Select All</label>
+				<label style="display: block;" [hidden]="!allSelect">UnSelect All</label>
+				<input type="checkbox" [(ngModel)]="allSelect" name="select" (ngModelChange)="onClick()" style="cursor:pointer;" />
+			</th>
+			<th *ngFor="let column of columnNames">{{column}}</th>
+		</tr>
+		<tr *ngFor="let item of listItems | orderBy : [sortParam] | slice: (currentPage - 1) * itemsPerPage : itemsPerPage*currentPage; let i=index">
+			<td style=" text-align:center;">
+				<input #CheckBox type="checkbox" [(ngModel)]="item.chkBox" id="{{item.assetItem.pkid}}" (ngModelChange)="trackSelected()"
+					style="cursor:pointer;" />
+			</td>
+			<td (click)="item.chkBox=true; onEdit() " style="cursor:pointer; width:20%; ">{{item.assetItem.name}}</td>
+			<td style="width:20%; ">{{item.assetItem.description}}</td>
+			<td>{{item.assetItem.updatorName}}</td>
+			<td>{{item.assetItem.updateDate | date:"short"}}</td>
+		</tr>
+	</table>
+</div>
+<message-center></message-center>
+<div class="fixed-action-btn " style="width:7%; position:fixed; top:230px; ">
+	<a class="btn-floating btn-large " title="Options ">
+		<span class="glyphicon glyphicon-pencil " style="margin:11px 0 0 11px; font-size:18px; "></span>
+	</a>
+	<ul style="padding-left:0px; margin-top:-10px ">
+		<li>
+			<button class="btn-floating " (click)="onEdit() " title="Edit " [disabled]="!(counter==1) ">
+        <span class="glyphicon glyphicon-edit " style="margin:0px 0px 3px 1px; "></span>
+      </button>
+		</li>
+		<li>
+			<button class="btn-floating " (click)="onDuplicate() " title="Duplicate " [disabled]="(counter==0) ">
+        <span class="glyphicon glyphicon-duplicate " style="margin:0px 0px 3px 1px; "></span>
+      </button>
+		</li>
+		<li [hidden]=true>
+			<button class="btn-floating " title="Print " [disabled]="!(counter==1) ">
+        <span class="glyphicon glyphicon-print" (click)="onPrintClick();" style="margin:0px 0px 3px 1px; "></span>
+      </button>
+		</li>
+		<li [hidden]=true>
+			<button class="btn-floating " title="Export " [disabled]="!(counter==1) ">
+        <span class="glyphicon glyphicon-share"  (click)="onExportClick()" style="margin:0px 0px 3px 1px; "></span>
+      </button>
+		</li>
+		<li>
+			<button class="btn-floating " (click)="onDelete() " title="Delete " [disabled]="(counter==0) ">
+        <span class="glyphicon glyphicon-trash " style="margin:0px 0px 3px 1px; "></span>
+      </button>
+		</li>
+	</ul>
+</div>
+<div class="row">
+	<ngb-pagination [collectionSize]=collectionSize (click)="checkSelect()"[(page)]=currentPage [maxSize]=pagesAtOnce [rotate]="true" [boundaryLinks]="true"
+		[pageSize]=itemsPerPage style="float:left; margin-left:12px;"></ngb-pagination>
+	<div style="float:right; margin:25px 8% 0 0; ">
+		<label style="font-weight: 100; ">Items Per Page</label>
+		<select class="form-control " [(ngModel)]="itemsPerPage" name="item" (ngModelChange)="onItemsParPageChange()" style="display:inline;
+			height:auto; width:auto; padding:2px 5px; ">
+        <option *ngFor="let item of listItemsNumber" value="{{item}}">{{item}}</option>
+    </select>
+	</div>
+</div>
+<modal #confirmModal style="color:#0458A2;">
+	<modal-header [show-close]="false" style="height:30px !important">
+	</modal-header>
+	<modal-body>
+		<div class='container2'>
+			<div>
+				<img src='public/img/alert_transparent_green_bright_2.png' class='iconDetails'>
+			</div>
+			<div style='margin-left:80px;word-wrap: break-word;'>
+				<div class="message">{{confirmTitle}}</div>
+			</div>
+		</div>
+	</modal-body>
+	<modal-footer>
+		<button type="button" class='uni-button' (click)="onCancelDelete(); disable=false;" style="float: right">Cancel</button>
+		<button type="button" class='uni-button' (click)="onConfirmDelete()" style="float: right;margin-right:5px">Delete</button>
+	</modal-footer>
+</modal>
+<modal #modal style="color:#0458A2;">
+	<modal-header [show-close]="true" style="background: rgb(167, 176, 190)">
+		<h4 class="modal-title" style="text-align: center;color:white">Description</h4>
+	</modal-header>
+	<modal-body id="prnt">
+		<div style="float:left;">
+			<img src="public/img/Systech_S_Mark_FullColor.png" alt="UniSecure" style="width:40px;" />
+			<img src="public/img/SYS_UniSecure.png" alt="UniSecure" style="width:130px;" />
+		</div><br><br>
+		<div *ngIf="operatorAssetItem!=null">
+			<label>Name:</label>
+			<label>{{operatorAssetItem.name}}</label><br><br>
+			<label>Description:</label>
+			<label>{{operatorAssetItem.description}}</label><br><br>
+			<label>ActivityType:</label>
+			<label>{{operatorAssetItem.requestType}}</label><br><br>
+			<label>{{operatorAssetItem.requestSubType}}:</label>
+			<label>{{operatorAssetItem.singleValue}}</label><br><br>
+			<label>FromDate:</label>
+			<label>{{operatorAssetItem.fromDate}}</label><br><br>
+			<label>EndDate:</label>
+			<label>{{operatorAssetItem.endDate}}</label><br><br>
+			<label>Action State:</label>
+			<label>{{operatorAssetItem.action}}</label><br><br>
+		</div>
+	</modal-body>
+	<modal-footer>
+		<button type="button" class='uni-button' (click)="print('prnt')" style="float: right;">Print</button>
+	</modal-footer>
+</modal>

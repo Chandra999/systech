@@ -1,0 +1,471 @@
+$default-font : 'Montserrat',Arial, sans-serif;
+$theme-color:#3b73b9;
+$second-color: #3366CE;
+$image_width:32px;
+$image_height:32px;
+$text_color:#58595b;
+$inputFiled-width:500px;
+$border-color: #3b73b9;
+$border-radius:5px;
+$border-size:1px;
+
+.assetForm{
+     width: 80%;
+     height: auto;
+     margin: 2px 5px;
+     padding: 20px 30px;
+     font: 15px $default-font;
+     display: block;
+     color:$text_color;
+
+     div{
+         display :block;
+
+         img{
+             width :$image_width;
+             height :$image_height;
+             float:left;
+             margin-right:20px
+         }
+         h4{
+             font: 18px $default-font;
+         }
+
+     }
+}
+
+.events{
+   border:2px solid #ccc;
+   padding-left: 20px;
+   width : 94.5%;
+   height: 100px;
+   overflow-y: scroll;
+   border-radius:10px;
+}
+
+.events::-webkit-scrollbar {
+    width: 1em;
+}
+
+.events::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+.events::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: $theme-color;
+  outline: 1px solid $second-color;
+}
+.serswitch{
+    position: absolute; width: 70px;
+    float:left; margin-left :90px;
+    -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.serswitch-checkbox {
+    display: none;
+}
+.serswitch-label {
+    display: block; 
+    overflow: hidden; 
+    cursor: pointer;
+    border: 1px solid $theme-color;
+    border-radius: 12px;
+    color: $theme-color;
+}
+.serswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.serswitch-inner:before, .serswitch-inner:after {
+    display: block; 
+    float: left; 
+    width: 50%; 
+    height: 22px; 
+    padding: 0; 
+    line-height: 22px;
+    font-size: 12px;
+    color: white; 
+    font-family: $default-font; 
+    font-weight: bold;
+
+}
+.serswitch-inner:before {
+    content: "YES";
+    padding-left: 15px;
+    background-color: $theme-color; color: #FFFFFF;
+}
+.serswitch-inner:after {
+    content: "NO";
+    padding-right: 12px;
+    background-color: #EEEEEE; color: $theme-color;
+    text-align: right;
+}
+.serswitch-switch {
+    display: block;
+    width: 14px;
+    height: 14px;
+    margin-top: 4px; 
+    margin-right: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; 
+    bottom: 6px;
+    right: 44px;
+    border-radius: 50%;
+    transition: all 0.3s ease-in 0s;
+    border: 1px solid $theme-color;
+}
+
+
+.serswitch-checkbox:checked + .serswitch-label{
+    border: 0px solid $theme-color;
+}
+
+.serswitch-checkbox:checked + .serswitch-label .serswitch-inner {
+    margin-left: 0px;
+}
+.serswitch-checkbox:checked + .serswitch-label .serswitch-switch {
+    right: 0px;
+    border: 0px solid $theme-color;
+}
+
+table {
+    width:94.5%;
+    border-radius:10px;
+    box-shadow: 0 2px 4px 0 $theme-color,0 2px 10px 0 $theme-color !important;
+}
+table, th, td {
+    border: 1px solid;
+}
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+table tr:nth-child(even) {
+    background-color: #F3F3F3;
+}
+table tr:nth-child(odd) {
+   background-color:white;
+}
+table th	{
+    background-color: $theme-color;
+    border: 1px solid black;
+    color: white;
+}
+
+hr{
+  border-color:#3b73b9
+}
+
+.inner-addon{
+  position:relative
+}
+
+.inner-addon .glyphicon{
+  position:absolute;
+  padding:10px;
+  pointer-events:none}
+
+.left-addon .glyphicon{
+  left:0
+}
+  .left-addon input{
+    padding-left:30px
+  }
+
+  fieldset
+  {
+    padding:5px 5px 10px 10px
+  }
+  legend
+  {
+    color:#0458A2;
+    font-size:14px;
+    font-weight:700;
+    text-align:left!important;
+    width:auto;margin:0;
+    padding:0 10px;
+    border-bottom:none}
+  textarea{
+    width:100%;
+    resize:none;
+    overflow-y:scroll;
+    padding:5px}
+
+.uniInput {
+         margin: 10px 0;
+         label {
+           display: inline-block;
+           width :100px;
+         }
+
+  }
+
+
+.inputField{
+     display: inline-block;
+     width: $inputFiled-width;
+     border:$border-size solid $border-color;
+     border-radius:  $border-radius;
+}
+
+.alertFiled{
+    border:$border-size solid $border-color;
+    border-radius : $border-radius;
+    padding:6px;
+    margin-top:10px;
+    width:$inputFiled-width;
+    margin-left:100px;
+
+}
+
+.legendClass{
+    width :auto !important;
+    padding: 0;
+    margin-bottom: 2px;
+    font-size: 15px;
+    line-height: inherit;
+    color: $theme-color;
+    border: 0px;
+    font-weight:bold;
+
+
+}
+
+.container {
+    margin: 10px 10px 10px 100px;
+    border:$border-size solid $border-color;
+    width: $inputFiled-width;
+    height: 200px;
+    overflow-y: scroll;
+    padding:6px;
+ }
+
+ .unicheckBox{
+        margin : 5px 2px 5px 15px;
+        font: 15px $default-font;
+    }
+
+.unisecure-display-box{
+    box-shadow: 0 2px 4px 0 #3b73b9,0 2px 10px 0 #3b73b9 !important;
+    padding: 30px;
+    height: 400px;
+    width:900px;
+    background-color:white;
+    color:#3b73b9;
+    position: fixed;
+    top:175px;
+  
+}
+
+.unisecure-account-box{
+    box-shadow: 0 2px 4px 0 #3b73b9,0 2px 10px 0 #3b73b9 !important;
+    padding: 30px;
+    height: 500px;
+    width:900px;
+    margin-left:30px;
+    background-color:white;
+    color:#3b73b9;
+    top:205px; 
+  
+}
+
+.msgswitch{
+    position: absolute; width: 106px;
+    float:left; 
+   -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.msgswitch-checkbox {
+    display: none;
+}
+.msgswitch-label {
+    display: block; 
+    overflow: hidden; 
+    cursor: pointer;
+    border: 2px solid $theme-color;
+    border-radius: 20px;
+    color: $theme-color;
+}
+.msgswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.msgswitch-inner:before, .msgswitch-inner:after {
+    display: block; 
+    float: left; 
+    width: 50%; 
+    height: 30px; 
+    padding: 0; 
+    line-height: 30px;
+    font-size: 14px;
+    color: white; 
+    font-family: $default-font; 
+    font-weight: bold;
+}
+.msgswitch-inner:before {
+    content: "ENABLE";
+    padding-left: 10px;
+    background-color: $theme-color; color: #FFFFFF;
+}
+.msgswitch-inner:after {
+    content: "DISABLE";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: $theme-color;
+    text-align: right;
+}
+.msgswitch-switch {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-top: 4px; 
+    margin-right: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; 
+    bottom: 0;
+    right: 72px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+    border: 1px solid $theme-color;
+}
+
+.msgswitch-checkbox:checked + .msgswitch-label .msgswitch-inner {
+    margin-left: 0px;
+}
+.msgswitch-checkbox:checked + .msgswitch-label .msgswitch-switch {
+    right: 0px;
+    border: 0px solid $theme-color;
+}
+
+
+.animswitch{
+    position: absolute; width: 106px;
+    float:left; 
+   -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.animswitch-checkbox {
+    display: none;
+}
+.animswitch-label {
+    display: block; 
+    overflow: hidden; 
+    cursor: pointer;
+    border: 2px solid $theme-color;
+    border-radius: 20px;
+    color: $theme-color;
+}
+.animswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.animswitch-inner:before, .animswitch-inner:after {
+    display: block; 
+    float: left; 
+    width: 50%; 
+    height: 30px; 
+    padding: 0; 
+    line-height: 30px;
+    font-size: 14px;
+    color: white; 
+    font-family: $default-font; 
+    font-weight: bold;
+
+}
+.animswitch-inner:before {
+    content: "ENABLE";
+    padding-left: 10px;
+    background-color: $theme-color; color: #FFFFFF;
+}
+.animswitch-inner:after {
+    content: "DISABLE";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: $theme-color;
+    text-align: right;
+}
+.animswitch-switch {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-top: 4px; 
+    margin-right: 6px;
+    background: #FFFFFF;
+    position: absolute; top: 0; 
+    bottom: 0;
+    right: 72px;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+    border: 1px solid $theme-color;
+}
+
+.animswitch-checkbox:checked + .animswitch-label .animswitch-inner {
+    margin-left: 0px;
+}
+.animswitch-checkbox:checked + .animswitch-label .animswitch-switch {
+    right: 0px;
+    border: 0px solid $theme-color;
+}
+
+.editswitch{
+   position: relative; width: 65px;
+    float:left; 
+   -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
+}
+.editswitch-checkbox {
+    display: none;
+}
+.editswitch-label {
+    display: block; 
+    overflow: hidden; 
+    cursor: pointer;
+    border: 2px solid $theme-color;
+    border-radius: 20px;
+    color: $theme-color;
+}
+.editswitch-inner {
+    display: block; width: 200%; margin-left: -100%;
+    transition: margin 0.3s ease-in 0s;
+}
+.editswitch-inner:before, .editswitch-inner:after {
+    display: block; 
+    float: left; 
+    width: 50%; 
+    height: 20px; 
+    padding: 0; 
+    line-height: 20px;
+    font-size: 14px;
+    color: white; 
+    font-family: Montserrat,Arial,sans-serif; 
+    font-weight: bold;
+
+}
+.editswitch-inner:before {
+    content: "Yes";
+    padding-left: 10px;
+    background-color: $theme-color; color: #FFFFFF;
+}
+.editswitch-inner:after {
+    content: "No";
+    padding-right: 10px;
+    background-color: #EEEEEE; color: $theme-color;
+    text-align: right;
+}
+.editswitch-switch {
+    display: block;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px; 
+    margin-right: 3.5px;
+    background: #FFFFFF;
+    position: absolute; top: 0; 
+    bottom: 0;
+    border-radius: 20px;
+    transition: all 0.3s ease-in 0s;
+    border: 1px solid $theme-color;
+}
+
+.editswitch-checkbox:checked + .editswitch-label .editswitch-inner {
+    margin-left: 0px;
+}
+.editswitch-checkbox:checked + .editswitch-label .editswitch-switch {
+    right: 0px;
+    border: 0px solid $theme-color;
+}

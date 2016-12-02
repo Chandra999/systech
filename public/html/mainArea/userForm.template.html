@@ -1,0 +1,317 @@
+<div class="topnav uni-card2" style="position:fixed; top:68px; padding:0px; color :white; z-index:1">
+    <div style="overflow:auto">
+        <div style="overflow:hidden;height:44px;text-align:center;z-index:1">
+            <a title="User/Groups Preferences">
+                <i style="text-align:center;display:block;"></i>{{display}} Preferences
+            </a>
+        </div>
+    </div>
+</div>
+<div>
+    <ul style="margin-left:20px;" id="breadcrumb">
+        <li><a (click)="homeSelected()">System Preferences</a> </li>
+        <li><a (click)="onCancel()">{{display}} Preferences</a> </li>
+        <li>
+            <a>
+                <span class="glyphicon glyphicon-asterisk" style="margin-left:2px;" *ngIf="editFlag||!userSaved"></span>  {{userItem.userName == '' ? 'New User' : getUsername()}}
+            </a>
+            
+        </li>
+
+    </ul>
+</div>
+
+<div>
+    <i style="margin-left:30px;color:#3b73b9;cursor:pointer;" class="{{ visible ? 'glyphicon glyphicon-eject gly-flip-vertical' : 'glyphicon glyphicon-eject' }}"
+        (click)="headerCollapse()"> </i>
+
+    <div [hidden]="visible" style="display:flex; margin-left:90px;align-items:center;">
+        <img class="user_image" src={{image}} style="width:80px; height:80px; margin:0 25px 0 0; ">
+        <span style="color:#3b73b9">{{defaultintro}} </span>
+        <div style="clear:both"> </div>
+    </div>
+</div>
+<message-center></message-center>
+
+<form id="addUser" (ngSubmit)="userForm.valid && onSubmit()">
+    <div class="fixed-action-btn" style="width: 16%; position:fixed; top: 245px; padding:0;">
+        <a class="btn-floating btn-large" title="Options">
+            <span class="glyphicon glyphicon-pencil" style="margin:11px 0 0 11px; font-size:18px;"></span>
+        </a>
+        <ul style="padding-left:0px; margin-bottom:-8px;">
+            <li>
+                <button class="btn-floating" type="submit" [disabled]="!userForm.valid||userSaved||!editFlag" title="Save">
+                    <span class="glyphicon glyphicon-floppy-save" style="margin-top:10px;"></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn-floating" [disabled]="!userForm.valid ||!userSaved|| editFlag" type="button" (click)="sendInvitation()"
+                    title="Send Invitation ">
+                    <span class="glyphicon glyphicon-send" style="margin-top:10px;"></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn-floating" [disabled]="!userForm.valid || !editFlag" type="button" (click)="invite()" title="Save and Send Invitation">
+                    <span class="glyphicon glyphicon-envelope" style="margin-top:10px;"></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn-floating" [disabled]="!userForm.valid||userSaved||!editFlag" type="button" (click)="onCreateNewUser()"
+                    title="Save, Send Invitation and Create New User">
+                    <span class="glyphicon glyphicon-open-file" style="margin-top:10px;"></span>
+                </button>
+            </li>
+            <li>
+                <button class="btn-floating" type="button" (click)="onCancel()" title="Cancel">
+                    <span class="glyphicon glyphicon-remove" style="margin-top:10px;"></span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div class="assetForm uni-card-2 col-lg-8" style="float: left;">
+        <span class="glyphicon glyphicon-remove formClose" (click)="onCancel()" title="Close"></span>
+        <div *ngIf="load" style="background: #e9e9e9; position: absolute; top: 0; right: 0; bottom: 0; left: 0; opacity: 0.5;">
+            <a style="font-size:x-large;  height: 100%; z-index: 200;float:left;margin-left:40%;fon-weight:strong;">
+                <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#8dc63f;"></span> Sending
+                Invitation...
+            </a>
+        </div>
+        <div style="float:left;width:50%;margin-top:17px;" ng-control-group="user" class="left-form">
+            <div>
+                <div *ngIf="isCreate" style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Username</label>
+                    <div style="width:75%" class="has-feedback">
+                        <input type="text" class="form-control" maxlength="255" placeholder="User Name" #userName='ngForm' [(ngModel)]="userItem.userName" name="username"
+                            [formControl]="userForm.controls['userName']" (ngModelChange)="onContentChange()" pattern="[a-zA-Z0-9_]*">
+
+                        <span *ngIf="userName.control.touched && !userName.control.hasError('required') && !userName.control.hasError('pattern')"
+                            style="color: #3b73b9; z-index:1" class="glyphicon glyphicon-ok form-control-feedback text-success"
+                            aria-hidden="true"></span>
+                        <span *ngIf="userName.control.touched && userName.control.hasError('required') || userName.control.hasError('pattern')" style="color: #a94442;z-index:-1"
+                            class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <div class='error' *ngIf='userName.control.touched'>
+                            <div *ngIf="userName.control.hasError('required')">Username is required.</div>
+                            <div *ngIf="userName.control.hasError('pattern')">Certain special characters are not allowed.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="!isCreate" style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Username</label>
+                    <div style="width:75%" class="has-feedback">
+                        <input type="text" disabled="disabled" class="form-control" maxlength="255" placeholder="User Name" #userName='ngForm' [(ngModel)]="userItem.userName" name="username"
+                            [formControl]="userForm.controls['userName']" (ngModelChange)="onContentChange()" pattern="[a-zA-Z0-9_]*">
+
+                        <span *ngIf="userName.control.touched && !userName.control.hasError('required') && !userName.control.hasError('pattern')"
+                            style="color: #3b73b9; z-index:1" class="glyphicon glyphicon-ok form-control-feedback text-success"
+                            aria-hidden="true"></span>
+                        <span *ngIf="userName.control.touched && userName.control.hasError('required') || userName.control.hasError('pattern')" style="color: #a94442"
+                            class="glyphicon glyphicon-remove form-control-feedback" aria-hidden="true"></span>
+                        <div class='error' *ngIf='userName.control.touched'>
+                            <div *ngIf="userName.control.hasError('required')">Username is required.</div>
+                            <div *ngIf="userName.control.hasError('pattern')">Certain special characters are not allowed.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Password</label>
+                    <input class="unicheckbox" style="margin-left:170px" type="checkbox" [(ngModel)]="userItem.invalidatePassword" name="expirePswd" (ngModelChange)="onContentChange()">                    <strong>Expire this passsword</strong>
+
+                    <div *ngIf="isCreate" style="width:75%">
+                        <input type="password" class="form-control" placeholder="Password" #password='ngForm' [(ngModel)]="userItem.password" name="newPswd" (ngModelChange)="onContentChange()"
+                            [formControl]="userForm.controls['password']">
+                        <div *ngIf="password.control.touched || !password.control.hasError('required')">
+                            <div id="passwor" *ngIf=" password.control.hasError('minCapChar') || password.control.hasError('minLen')  || password.control.hasError('minNumber') || password.control.hasError('specialChar')  || password.control.hasError('minSmallChar') || password.control.hasError('noSpace')">
+                                <span>
+                                    <ul>
+                                <li  [ngClass]="{invalid:password.control.hasError('required'), valid:!password.control.hasError('required')}">Password is required.</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minLen'), valid:!password.control.hasError('minLen')}">Password must be at least 6 characters long </li>
+                                <li  [ngClass]="{invalid:password.control.hasError('specialChar'), valid:!password.control.hasError('specialChar')}">Password must contain at least one special character</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minNumber'), valid:!password.control.hasError('minNumber')}">Password must contain at least one number</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minCapChar'), valid:!password.control.hasError('minCapChar')}">Password must contain at least one upper case character</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minSmallChar'), valid:!password.control.hasError('minSmallChar')}">Password must contain at least one lower case character</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('noSpace'), valid:!password.control.hasError('noSpace')}">Password must not contain space</li> 
+                                 </ul>
+                               </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="!isCreate" style="width:75%">
+                        <input type="password" class="form-control" placeholder="Password" #password='ngForm' [(ngModel)]="tempPassword" name="tempPswd" (focus)="updatePassword(); onContentChange()"
+                            [formControl]="userForm.controls['password']">
+                        <div *ngIf="password.control.touched || !password.control.hasError('required')">
+                            <div id="passwor" *ngIf=" password.control.hasError('minCapChar') || password.control.hasError('minLen')  || password.control.hasError('minNumber') || password.control.hasError('specialChar')  || password.control.hasError('minSmallChar')|| password.control.hasError('noSpace')">
+                                <span>
+                                    <ul>
+                                <li  [ngClass]="{invalid:password.control.hasError('required'), valid:!password.control.hasError('required')}">Password is required.</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minLen'), valid:!password.control.hasError('minLen')}">Password must be at least 6 characters long </li>
+                                <li  [ngClass]="{invalid:password.control.hasError('specialChar'), valid:!password.control.hasError('specialChar')}">Password must contain at least one special character</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minNumber'), valid:!password.control.hasError('minNumber')}">Password must contain at least one number</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minCapChar'), valid:!password.control.hasError('minCapChar')}">Password must contain at least one upper case character</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('minSmallChar'), valid:!password.control.hasError('minSmallChar')}">Password must contain at least one lower case character</li>
+                                <li  [ngClass]="{invalid:password.control.hasError('noSpace'), valid:!password.control.hasError('noSpace')}">Password must not contain space</li>
+                                </ul>
+                               </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div *ngIf="isCreate" style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Verify Password</label>
+                    <div style="width:75%">
+                        <input type="password" class="form-control" placeholder="Verify Password" #verifyPassword='ngForm' [formControl]="userForm.controls['verifyPassword']"
+                            (ngModelChange)="onContentChange()">
+                        <div class='error' *ngIf="verifyPassword.control.touched">
+                            <div *ngIf="userForm.hasError('mismatchedPasswords')">Passwords do not match.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div *ngIf="!isCreate" style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Verify Password</label>
+                    <div style="width:75%">
+                        <input type="password" class="form-control" placeholder="Verify Password" [(ngModel)]="vPassword" name="vPswd" #verifyPassword='ngForm'
+                            (focus)="updateVPassword(); onContentChange()" [formControl]="userForm.controls['verifyPassword']">
+                        <div class='error' *ngIf="verifyPassword.control.touched">
+                            <div *ngIf="userForm.hasError('mismatchedPasswords')">Passwords do not match.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">First Name</label>
+                    <div style="width:75%">
+                        <input type="text" class="form-control" placeholder="First Name" #firstName='ngForm' [(ngModel)]="userItem.firstName" name="fName" (ngModelChange)="onContentChange()"
+                            [formControl]="userForm.controls['firstName']" pattern="[a-zA-Z ]*">
+                        <div class='error' *ngIf='firstName.control.touched'>
+                            <div *ngIf="firstName.control.hasError('required')">First name is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Last Name</label>
+                    <div style="width:75%">
+                        <input type="text" class="form-control" placeholder="Last Name" #lastName='ngForm' [(ngModel)]="userItem.lastName" name="lName" (ngModelChange)="onContentChange()"
+                            [formControl]="userForm.controls['lastName']" pattern="[a-zA-Z]*">
+                        <div class='error' *ngIf='lastName.control.touched'>
+                            <div *ngIf="lastName.control.hasError('required')">Last name is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left:30px;" class="form-group form-group-sm">
+                    <label for="name">Email</label>
+                    <div style="width:75%">
+                        <input type="email" class="form-control" placeholder="E-mail" value="email" #email='ngForm' [(ngModel)]="userItem.email" name="eMail"
+                            (ngModelChange)="onContentChange()" [formControl]="userForm.controls['email']">
+                        <div class='error' *ngIf="email.control.touched">
+                            <div *ngIf="email.control.hasError('required')">Email is required.</div>
+                            <div *ngIf="email.control.hasError('invalidEmail')">Email is invalid.</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div style="margin-left:30px;" class="form-group form-group-sm">
+                    <div style="width:75%" class="uni-card-2">
+                        <br>
+                        <fieldset class="picture">
+                            <div>
+                                <label *ngIf="userItem.useGravatar" class="uni-button-disable"> Change Picture </label>
+                                <label *ngIf="!userItem.useGravatar" class="uni-button">  Change Picture <input type="file" accept=".png,.jpeg,.gif" style="display: none;" (change)="fileChange($event); onContentChange();" />          </label>
+                                <div style="float:right; margin-right:30px;">
+                                    <input class="unicheckbox" type="checkbox" [(ngModel)]="userItem.useGravatar" name="useGravatarImage" (ngModelChange)="syncGravatar()">                                    <strong>Synchronize with Gravatar</strong>
+                                </div>
+                            </div><br>
+                            <div style="width:70px; height:70px;">
+                                <div>
+                                    <img style="margin-left:20px; width:70px; height:70px;" src='{{ user_images }}' alt="" />
+                                </div>
+                            </div>
+                            <br>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div [hidden]="!loading" style="float:right;width:50%;" class="right-form">
+            <label style="font-weight:bold;">Existing Groups</label>
+            <table class='uni-table' id="existing-groups">
+
+                <tr>
+                    <th>
+                        <input type="checkbox" class="unicheckbox" [(ngModel)]="selectAll" name="select" (ngModelChange)="selectAllGroups()" />
+                    </th>
+                    <th> Name </th>
+                    <th> Description </th>
+                </tr>
+                <tr>
+                    <td style="text-align:center" COLSPAN="3">
+                        <a style="font-size:x-large;">
+                            <span class="glyphicon glyphicon-refresh glyphicon-refresh-animate" style="color:#8dc63f;"></span>                            Loading...
+                        </a>
+                    </td>
+                    <tr>
+            </table>
+        </div>
+
+        <div [hidden]="loading" style="float:right;width:50% " class="right-form">
+            <label style="font-weight:bold;">Existing Groups</label>
+
+            <table class='uni-table' id="existing-groups">
+                <tr>
+                    <th>
+                        <input class="unicheckbox" type="checkbox" [(ngModel)]="selectAll" name="select" (ngModelChange)="selectAllGroups()">
+                    </th>
+                    <th> Name </th>
+                    <th> Description </th>
+                    <th> Roles </th>
+                </tr>
+                <tr *ngFor="let usergroup of existingGroups let i=index">
+                    <td style="text-align:center;"> <input type="checkbox" [checked]="usergroup.isChecked" (click)="selectGroups(i)"> </td>
+                    <td> {{usergroup.name}}</td>
+                    <td> {{getGroupDescription(usergroup)}} </td>
+                    <td class="uni-td">
+                        <div style="min-height:20px;">
+                            <label *ngFor="let role of usergroup.roles" style="margin-right:5px;">
+                                <img src="{{imageShow(role)}} " title="{{role}}" class="img-circle" style="width:25px; margin-right:-8px;">
+                            </label>
+                        </div>
+                    </td>
+                </tr>
+
+
+            </table>
+        </div>
+
+    </div>
+</form>
+<modal #confirmModal style="color:#0458A2;">
+    <modal-header [show-close]="false" style="height:30px !important"></modal-header>
+    <modal-body>
+        <div class='container2'>
+            <div>
+                <img src='public/img/alert_transparent_green_bright_2.png' class='iconDetails'>
+            </div>
+            <div style='margin-left:80px;word-wrap: break-word; '>
+                <div class="message">{{confirmTitle}}</div>
+                <div class="message">{{message}}</div>
+            </div>
+        </div>
+    </modal-body>
+    <modal-footer>
+        <button type="button" class='uni-button' (click)="cancelClicked()" style="float: right">{{cancelButtonLabel}}</button>
+        <button type="button" [disabled]="!userForm.valid" class='uni-button' (click)="okClicked()" style="float: right;margin-right:5px">{{okButtonLabel}}</button>
+    </modal-footer>
+</modal>

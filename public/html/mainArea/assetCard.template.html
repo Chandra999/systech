@@ -1,0 +1,85 @@
+
+<div class="col-xs-18 col-sm-6 col-md-3" style=" height:230px !important;">
+	<div class="thumbnail uni-card-2" style="display:table; width:100%; height:210px">
+		<div class="caption" style="background-color: #3b73b9; color:white; position: relative; display:table-row;height:45px;overflow-y: hidden;">
+			<div style="display:inline-block;   width: 100%; text-align: center; vertical-align: middle;text-overflow: ellipsis; height:45px;overflow-y: hidden;" class="assetTitle" (click)="onEdit()">
+				<h4 style="text-align:center;">{{getItemDisplayName(assetItem)}}</h4>
+			</div>
+			<div *ngIf="menuFlag" style="display:table-cell ; position: relative; text-align: center; vertical-align: middle;z-index:0">
+				<div class="fixer" (mouseleave)="checked=false"></div>
+				<div class="menu" (mouseenter)="checked=true">
+					<input #menuControl [attr.id]="assetItem.name" (change)="checked=menuControl.checked" type="checkbox" [checked]="checked"
+						class="menu-button" />
+					<label [attr.for]="assetItem.name" class="menu-button-icon">
+                        <span class="glyphicon glyphicon-option-vertical" style="margin-top :5px"></span>
+                    </label>
+					<a [ngClass]="{'menu-item': checked, 'menu-item-default':!checked}">
+						<i class="glyphicon glyphicon-edit" title="Edit" (click)="onEdit()"></i>
+					</a>
+					<a [ngClass]="{'menu-item': checked, 'menu-item-default':!checked}">
+						<i class="glyphicon glyphicon-duplicate" title="Duplicate" (click)="onDuplicate()"></i>
+					</a>
+					<a [style.cursor]="'not-allowed'" [ngClass]="{'menu-item': checked, 'menu-item-default':!checked}">
+						<i class="glyphicon glyphicon-print " title="Print" (click)="onPrintClick(); checked=false;"></i>
+					</a>
+					<a [ngClass]="{'menu-item': checked, 'menu-item-default':!checked}">
+						<i class="glyphicon glyphicon-trash" title="Delete" (click)="onDelete()"></i>
+					</a>
+					<a [style.cursor]="'not-allowed'" [ngClass]="{'menu-item': checked, 'menu-item-default':!checked}">
+						<i class="glyphicon glyphicon-share" title="Export" (click)="onExportClick()"></i>
+					</a>
+					<a [style.cursor]="'not-allowed'" [ngClass]="{'menu-item': checked, 'menu-item-default':!checked}">
+						<i class="glyphicon glyphicon-edit"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="caption">
+			<div style="height:140px;">
+				 <div style="float:left;width:84;">
+					<img [src]="assetItem.imageUrl" style="width :64px; height :64px; margin:10px" ALIGN="Top">
+				 </div>
+			    <div style="margin-left:84px;word-wrap: break-word;min-width:5px; max-height:130px;overflow-y: hidden;">
+					{{getItemDisplayDescription(assetItem)}}
+				</div>	
+				<div id="cleared"></div>
+			</div>
+			<div></div>
+		</div>
+		<div  *ngIf="buttonsFlag"  style="margin-top:5px">
+			<button *ngIf="buttonsFlag" type="button" class='uni-button' (click)="onRejectClick()" style="float:right;">Reject</button>
+			<button *ngIf="buttonsFlag" type="button" class='uni-button' (click)="onApproveClick()" style="float:right; margin-right:3px;">Accept</button>
+		</div>
+	</div>
+</div>
+<!--<modal #modal style="color:#0458A2;">
+	<modal-header [show-close]="true" style="background: rgb(167, 176, 190)">
+		<h4 class="modal-title" style="text-align: center;color:white">Description</h4>
+	</modal-header>
+	<modal-body id="prnt">
+		<div style="float:left;">
+			<img src="public/img/Systech_S_Mark_FullColor.png" alt="UniSecure" style="width:40px;" />
+			<img src="public/img/SYS_UniSecure.png" alt="UniSecure" style="width:130px;" />
+		</div><br><br>
+		<div *ngIf="loading==false && operatorAssetItem!=null">
+			<label>Name:</label>
+			<label>{{operatorAssetItem.name}}</label><br><br>
+			<label>Description:</label>
+			<label>{{operatorAssetItem.description}}</label><br><br>
+			<label>ActivityType:</label>
+			<label>{{operatorAssetItem.requestType}}</label><br><br>
+			<label>{{operatorAssetItem.requestSubType}}:</label>
+			<label>{{operatorAssetItem.singleValue}}</label><br><br>
+			<label>FromDate:</label>
+			<label>{{operatorAssetItem.fromDate}}</label><br><br>
+			<label>EndDate:</label>
+			<label>{{operatorAssetItem.endDate}}</label><br><br>
+			<label>Action State:</label>
+			<label>{{operatorAssetItem.action}}</label><br><br>
+		</div>
+	</modal-body>
+	<modal-footer>
+		<button type="button" class='uni-button' (click)="print('prnt')" style="float: right;">Print</button>
+	</modal-footer>
+</modal>
+-->

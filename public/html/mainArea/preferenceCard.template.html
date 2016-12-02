@@ -1,0 +1,27 @@
+<div class="col-xs-18 col-sm-6 col-md-3">
+    <div class="thumbnail" style="display:table;margin-top:40px;" [ngClass]="{'uni-card-2':preferenceItem.visible ,'uni-card-2-grey':!preferenceItem.visible}">
+        <div [ngClass]="{'item_badge':preferenceItem.visible ,'item_badge-toggled':!preferenceItem.visible}">
+            <div style="display:table-cell;   width: 100%; text-align: center; vertical-align: middle;" [ngClass]="{'assetTitle':preferenceItem.visible ,'assetTitle-toggled':!preferenceItem.visible}"
+                (click)="onClick()">
+                <h4 style="text-align:center;">{{preferenceItem.displayName}}</h4>
+            </div>
+            <div style="display:table-cell ; position: relative; text-align: center; vertical-align: middle;z-index:0">
+                <div class="menu">
+                    <input type="hidden" class="menu-button" />
+                    <label class="menu-button-icon">
+                      <span style="margin-top :5px"></span>
+                  </label>
+                </div>
+            </div>
+        </div>
+        <div class="caption" style="display:inline-block">
+            <div style="padding-bottom:5px;min-height:140px;float:left;">
+                <img [src]="preferenceItem.imageUrl" style="width :64px; height :64px; float:left; margin:10px" ALIGN="Top">      
+            </div>
+            <div style="text-align: justify;">
+                      {{preferenceItem.description}}
+            </div>
+            
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div class="topItem">
+    <a data-toggle="collapse" href="#{{assetType}}" class="topItemIconLink" style="color: white;"> <i [hidden]="!visible" (click)="onClick()" [ngClass]="{'glyphicon' : true, 'glyphicon-triangle-right' : true, 'pull-left':true, 'triangle-glyphicon':true, 'rotate':true, 'down':isExpanded }"></i></a>
+    <div class="nav-icon" id={{getIconId()}}></div>
+    <a class="assetTypeLink" (click)="assetTypeSelected()" [hidden]="!visible">{{displayName}}</a>
+</div>
+<ul [hidden]="!visible" id={{assetType}} class="collapse inner-nav ">
+    <li [hidden]="!showLoadding()">
+        <a><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Loading...</a>
+    </li>
+    <li [hidden]="!visible " *ngFor="let item of assetItems;  let i=index">
+        <div class="inner-nav-icon" id={{getIconId()}}></div><a (click)="assetSelected(item)">{{getItemDisplayName(item)}}</a>
+        <div style="clear:both;"></div>
+    </li>
+</ul>

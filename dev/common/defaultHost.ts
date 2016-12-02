@@ -1,0 +1,14 @@
+export let DEFAULT_HOST = "http://" + window.location.hostname + ':8080' + '/UniSecure/';
+export let DEFAULT_URL = DEFAULT_HOST + "rest/";
+export let DEFAULT_IMAGE_URL = DEFAULT_HOST + "public/img/";
+export let DEFAULT_DEVELOPER_RESOURCE = DEFAULT_URL + 'designer';
+export let DEFAULT_OPERATOR_RESOURCE = DEFAULT_URL + 'operator';
+export let DEFAULT_ADMIN_RESOURCE = DEFAULT_URL + 'admin';
+export let DEFAULT_PRODUCTION = DEFAULT_URL + 'production';
+export let DEFAULT_GRAVATAR_URL = "https://www.gravatar.com/avatar/";
+export let DEFAULT_IMAGES_URL ="http://" + window.location.hostname + ':8080'+"/Systech/images/";
+export let DEFAULT_CIMAGE_URL = DEFAULT_HOST+'public/img/';
+export let DEFAULT_ERRORS_URL = "http://" + window.location.hostname + ':8080'+"/UniSecureErrors/rest/errors/";
+export let DEFAULT_OPERATOR_INTEGRATION_HOST="http://" + window.location.hostname +":8080/com.systechone.operatoradmin.ws/";
+export let DEFAULT_OPERATOR_INTEGRATION_PREVIEW= DEFAULT_OPERATOR_INTEGRATION_HOST+"preview";
+export let DEFAULT_UNITRACE_URL = "https://" + window.location.hostname
