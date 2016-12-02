@@ -12,6 +12,7 @@ import { Md5 } from '../md5/md5';
 import { DEFAULT_GRAVATAR_URL, DEFAULT_CIMAGE_URL } from '../common/defaultHost';
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Rx";
+import { MessageUtilityComponent } from '../mock/message-utility.component';
 
 @Component({
     selector: 'unisecure-login',
@@ -28,6 +29,7 @@ import { Subscription } from "rxjs/Rx";
                <span *ngIf="!isUserIdValid()" class="error">
                     The login informaiton you provided does not match our records. Please enter your Username and password.
                  </span>
+                 <message-utility></message-utility>
              </div>    
               <div class="form-group form-group-sm">
                 <label for="userId">Username </label>
@@ -126,6 +128,7 @@ import { Subscription } from "rxjs/Rx";
     outputs: ['inputModelChange'],
     // directives: [FORM_DIRECTIVES],
     styleUrls: ['public/css/login/login.css', 'public/css/mainArea/view.css'],
+
 })
 export class LoginComponent implements OnInit {
     intro: string = logInDescription;
@@ -155,7 +158,9 @@ export class LoginComponent implements OnInit {
     changeUser = false;
     changePassword = false;
     subscription: Subscription;
-
+    public handleError$: EventEmitter<JSON>;
+     @ViewChild(MessageUtilityComponent)
+     private msgUtilityComp: MessageUtilityComponent;
     // @ViewChild('modal')
     // modal: ModalComponent;
     constructor(private router: Router, private dataService: DataService, private fb: FormBuilder, private route: ActivatedRoute, private userSvc: UsersService, private assetsSvc: DataService) {
@@ -167,6 +172,7 @@ export class LoginComponent implements OnInit {
                     validator: matchingPasswords('password', 'verifyPassword')
                 })
         }
+        this.handleError$ = new EventEmitter<JSON>();
     }
 
     ngOnInit() {
@@ -232,7 +238,7 @@ export class LoginComponent implements OnInit {
             if (!this.isUserIdEmpty() && !this.isPasswordEmpty()) {
                 this.assetsSvc.login(this.userId, this.password).subscribe(
                     data => this.onGetUserPreference(data),
-                    error => this.onGetUserError(error)
+                    error => this.msgUtilityComp.handleError(error)
                 );
             }
 
@@ -340,6 +346,7 @@ export class LoginComponent implements OnInit {
     onGetUserError(data: JSON) {
         console.log(JSON.stringify(data));
         this.validUser = false;
+        
     }
 
     getSelectedRole() {

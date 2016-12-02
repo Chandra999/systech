@@ -21,6 +21,7 @@ import { ForgetPasswordComponent } from './login/forget_password.component';
 import { ResetPasswordComponent } from './login/reset_password.component';
 import { TopBannerComponent } from './topBanner/topBanner.component';
 import { TrashCanComponent } from './trashcan/trashcan.component';
+import {MessageUtilityComponent} from './mock/message-utility.component';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { TrashCanComponent } from './trashcan/trashcan.component';
         ForgetPasswordComponent,
         ResetPasswordComponent,
         TrashCanComponent,
+        MessageUtilityComponent,
         Tab,
         UI_Tabs
     ],
