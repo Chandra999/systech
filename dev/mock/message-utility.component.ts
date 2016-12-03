@@ -10,7 +10,7 @@ import { Message } from './message';
     selector: 'message-utility',
     templateUrl: 'public/html/message/message-utility.component.html',
     // directives: [FORM_DIRECTIVES],
-    styleUrls: ['public/css/login/login.css', 'public/css/message/message-utility.component.css'],
+    styleUrls: ['public/css/login/login.css', 'public/css/css/message/message-utility.component.css'],
     animations: [
         trigger('animate', [
             state('visible', style({ 'right': 12 })),
