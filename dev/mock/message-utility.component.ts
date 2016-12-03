@@ -33,7 +33,7 @@ export class MessageUtilityComponent implements OnInit {
     public showError: boolean;
     public msg: Message;
     private messageUrl = "http://" + window.location.hostname + ':8080' + '/UniSecureErrors/rest/errors/';
-
+    public customPlugs: string[] = ['a'];
     constructor(private http: Http) {
         this.showError = false;
     }
@@ -52,24 +52,42 @@ export class MessageUtilityComponent implements OnInit {
         //this.ms.messageAdded$.subscribe(jsonData => this.onGetError(jsonData));
     }
 
-    public handleError(jsonData: JSON) {
+    public handleError(jsonData: JSON, customMessage: string) {
         this.showError = true;
-        console.log(jsonData);
-        const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
-        const message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
-        // if (status == 'SUCCESS') {           
-        //     this.ms.displayRawMessage(new Message(status, 'DNA Created', '', '', ''), this.customPlugs)
-        //         .subscribe((value) => console.log(value));
-        // }
-        if (status == 'ERROR') {
-            this.displayRawMessage(new Message(status, JSON.parse(message).msgs[0].message, JSON.parse(message).msgs[0].action, JSON.parse(message).msgs[0].suggestion, JSON.parse(message).prefix), this.customPlugs)
-                .subscribe((value) => {
-                    console.log(value);
-                    if (value)
-                        this.msg = value;
-                    this.showError = true;
-                });
+        //const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : 'ERROR';
+        const status = 'ERROR';
+        var message: string = '';
+        var action: string = '';
+        var suggestion: string = '';
+        var prefix: string = '';
+
+        try {
+            if (customMessage && customMessage.length > 0) {
+                message = customMessage;
+            } else {
+                message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
+                action = JSON.parse(message).msgs[0].action;
+                suggestion = JSON.parse(message).msgs[0].suggestion;
+                prefix = JSON.parse(message).prefix
+            }
+            // if (status == 'SUCCESS') {           
+            //     this.ms.displayRawMessage(new Message(status, 'DNA Created', '', '', ''), this.customPlugs)
+            //         .subscribe((value) => console.log(value));
+            // }
+            if (status == 'ERROR') {
+                this.displayRawMessage(new Message(status, message, action, suggestion, prefix), this.customPlugs)
+                    .subscribe((value) => {
+                        console.log(value);
+                        if (value)
+                            this.msg = value;
+                        this.showError = true;
+                    });
+            }
         }
+        catch (ex) {
+            this.handleUnknownError(ex);
+        }
+
     }
 
     public closeError() {
@@ -80,7 +98,7 @@ export class MessageUtilityComponent implements OnInit {
         let x = this.messageUrl + "?prefix=" + prefix + "&langId=" + langId;
         if (errorId)
             x = x + "&id=" + errorId;   // since number is undefined, not null (java)
-        let pre = this.http.get(x).catch(this.handleError);
+        let pre = this.http.get(x).catch(this.handleUnknownError);
         let ret = pre.map(value => value.json());  // Get JS object
         return ret; // Observable, request will be made when this is subscribed to (imm. in example)
     }
@@ -90,7 +108,7 @@ export class MessageUtilityComponent implements OnInit {
         for (var plug of plugs) {
             x = x + "&plug=" + plug;
         }
-        let pre = this.http.get(x).catch(this.handleError);
+        let pre = this.http.get(x).catch(this.handleUnknownError);
         let ret = pre.map(value => value.json());
         return ret;
     }
@@ -179,5 +197,10 @@ export class MessageUtilityComponent implements OnInit {
         let res = '00000';
         res = res.slice(0, res.length - id.toString().length) + id;
         return res;
+    }
+
+    private handleUnknownError(error: any) {
+        console.log(error);
+        return Observable.throw(error);
     }
 }
