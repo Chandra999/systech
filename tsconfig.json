@@ -83,6 +83,8 @@
     "./dev/login/reset_password.component.ts",
     "./dev/md5/md5.ts",
     "./dev/mock/list.ts",
+    "./dev/mock/message.ts",
+    "./dev/mock/message-utility.component.ts",
     "./dev/operator/mainArea/action_new_activity.component.ts",
     "./dev/operator/mainArea/view_addNew_tab.component.ts",
     "./dev/operator/mainArea/view_edit_tab.component.ts",
