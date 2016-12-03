@@ -7,7 +7,7 @@ import { MessageService } from '../services/message.service';
 import { Message } from './message';
 
 @Component({
-    selector: 'error-handler',
+    selector: 'message-utility',
     templateUrl: 'public/html/message/message-utility.component.html',
     // directives: [FORM_DIRECTIVES],
     styleUrls: ['public/css/login/login.css', 'public/css/common/toaster.css'],
