@@ -238,7 +238,7 @@ export class LoginComponent implements OnInit {
             if (!this.isUserIdEmpty() && !this.isPasswordEmpty()) {
                 this.assetsSvc.login(this.userId, this.password).subscribe(
                     data => this.onGetUserPreference(data),
-                    error => this.msgUtilityComp.handleError(error, new Config(true, new Error('401', 'The login informaiton you provided does not match our records. Please enter your Username and password.')))
+                    error => this.msgUtilityComp.handleError(error, true, new Message('error', 'The login informaiton you provided does not match our records. Please enter your Username and password.', '', '', '')))
                 );
             }
 

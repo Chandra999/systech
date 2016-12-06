@@ -54,7 +54,7 @@ export class MessageUtilityComponent implements OnInit {
         //this.ms.messageAdded$.subscribe(jsonData => this.onGetError(jsonData));
     }
 
-    public handleError(jsonData: JSON, config: Config) {
+    public handleError(jsonData: JSON, customError?: boolean, msg?: Message) {
         this.showError = true;
         //const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : 'ERROR';
         const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
@@ -64,30 +64,22 @@ export class MessageUtilityComponent implements OnInit {
         var prefix: string = '';
 
         try {
-            if (config && config.customError) {
-                if (config.errors.key === status.toString())
-                    message = config.errors.message;
-                else
-                    message = '';
-            } else {
+            if (!customError) {
                 message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
                 action = JSON.parse(message).msgs[0].action;
                 suggestion = JSON.parse(message).msgs[0].suggestion;
-                prefix = JSON.parse(message).prefix
+                prefix = JSON.parse(message).prefix;
+                msg = new Message(status, message, action, suggestion, prefix);
+            } else {
+
             }
-            // if (status == 'SUCCESS') {           
-            //     this.ms.displayRawMessage(new Message(status, 'DNA Created', '', '', ''), this.customPlugs)
-            //         .subscribe((value) => console.log(value));
-            // }
-            if (status == 'ERROR') {
-                this.displayRawMessage(new Message(status, message, action, suggestion, prefix), this.customPlugs)
-                    .subscribe((value) => {
-                        console.log(value);
-                        if (value)
-                            this.msg = value;
-                        this.showError = true;
-                    });
-            }
+            this.displayRawMessage(msg, this.customPlugs)
+                .subscribe((value) => {
+                    console.log(value);
+                    if (value)
+                        this.msg = value;
+                    this.showError = true;
+                });
         }
         catch (ex) {
             this.handleUnknownError(ex);
