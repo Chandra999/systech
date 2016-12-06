@@ -128,7 +128,7 @@ import { Message } from '../mock/message';
     inputs: ['assetType', 'imageUrl', 'assetItem', 'formCtrl', 'intro'],
     outputs: ['inputModelChange'],
     // directives: [FORM_DIRECTIVES],
-    styleUrls: ['public/css/login/login.css', 'public/css/mainArea/view.css'],
+    styleUrls: ['public/css/login/login.css', 'public/css/mainArea/view.css']
 
 })
 export class LoginComponent implements OnInit {

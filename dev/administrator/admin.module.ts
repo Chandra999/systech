@@ -14,6 +14,7 @@ import { DNAComponent } from './mainArea/dna.component';
 import { DataService } from '../services/Assets.service';
 import { UsersService } from '../services/User.service';
 import { MessageService } from '../services/message.service';
+//import {MessageUtilityComponent} from '../mock/message-utility.component';
 
 
 @NgModule({
@@ -24,6 +25,7 @@ import { MessageService } from '../services/message.service';
     ],
 
     declarations: [
+        //MessageUtilityComponent,
         AdministratorAppComponent,
         AdministratorWelcomeComponent,
         PreferenceCardComponent,

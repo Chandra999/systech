@@ -20,7 +20,6 @@ import { Message } from '../../mock/message';
 @Component({
     selector: 'unisecure-users-tab',
     template: `
-    <message-utility></message-utility>
     <div class="topnav uni-card2" style="position:fixed; top:68px; padding:0px; color :white; z-index:1">
         <div style="overflow:auto">
             <div style="overflow:hidden;height:44px;text-align:center;z-index:1">
