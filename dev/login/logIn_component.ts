@@ -13,6 +13,8 @@ import { DEFAULT_GRAVATAR_URL, DEFAULT_CIMAGE_URL } from '../common/defaultHost'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Rx";
 import { MessageUtilityComponent } from '../mock/message-utility.component';
+import { Error } from '../mock/error';
+import { Config } from '../mock/config';
 
 @Component({
     selector: 'unisecure-login',
@@ -158,8 +160,8 @@ export class LoginComponent implements OnInit {
     changeUser = false;
     changePassword = false;
     subscription: Subscription;
-     @ViewChild(MessageUtilityComponent)
-     private msgUtilityComp: MessageUtilityComponent;
+    @ViewChild(MessageUtilityComponent)
+    private msgUtilityComp: MessageUtilityComponent;
     // @ViewChild('modal')
     // modal: ModalComponent;
     constructor(private router: Router, private dataService: DataService, private fb: FormBuilder, private route: ActivatedRoute, private userSvc: UsersService, private assetsSvc: DataService) {
@@ -236,7 +238,7 @@ export class LoginComponent implements OnInit {
             if (!this.isUserIdEmpty() && !this.isPasswordEmpty()) {
                 this.assetsSvc.login(this.userId, this.password).subscribe(
                     data => this.onGetUserPreference(data),
-                    error => this.msgUtilityComp.handleError(error,"The login informaiton you provided does not match our records. Please enter your Username and password.")
+                    error => this.msgUtilityComp.handleError(error, new Config(true, new Error('401', 'The login informaiton you provided does not match our records. Please enter your Username and password.')))
                 );
             }
 
@@ -344,7 +346,7 @@ export class LoginComponent implements OnInit {
     onGetUserError(data: JSON) {
         console.log(JSON.stringify(data));
         this.validUser = false;
-        
+
     }
 
     getSelectedRole() {

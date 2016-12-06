@@ -5,6 +5,8 @@ import { DataService } from '../services/Assets.service';
 import { emailValidator } from '../administrator/validators/addUser.validators';
 import { MessageService } from '../services/message.service';
 import { Message } from './message';
+import { Error } from './error';
+import { Config } from './config';
 
 @Component({
     selector: 'message-utility',
@@ -52,18 +54,21 @@ export class MessageUtilityComponent implements OnInit {
         //this.ms.messageAdded$.subscribe(jsonData => this.onGetError(jsonData));
     }
 
-    public handleError(jsonData: JSON, customMessage: string) {
+    public handleError(jsonData: JSON, config: Config) {
         this.showError = true;
         //const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : 'ERROR';
-        const status = 'ERROR';
+        const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
         var message: string = '';
         var action: string = '';
         var suggestion: string = '';
         var prefix: string = '';
 
         try {
-            if (customMessage && customMessage.length > 0) {
-                message = customMessage;
+            if (config && config.customError) {
+                if (config.errors.key === status.toString())
+                    message = config.errors.message;
+                else
+                    message = '';
             } else {
                 message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
                 action = JSON.parse(message).msgs[0].action;
