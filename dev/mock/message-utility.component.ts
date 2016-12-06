@@ -5,9 +5,6 @@ import { DataService } from '../services/Assets.service';
 import { emailValidator } from '../administrator/validators/addUser.validators';
 import { MessageService } from '../services/message.service';
 import { Message } from './message';
-import { Error } from './error';
-import { Config } from './config';
-
 @Component({
     selector: 'message-utility',
     templateUrl: 'public/html/message/message-utility.component.html',
@@ -54,7 +51,7 @@ export class MessageUtilityComponent implements OnInit {
         //this.ms.messageAdded$.subscribe(jsonData => this.onGetError(jsonData));
     }
 
-    public handleError(jsonData: JSON, customError?: boolean, msg?: Message) {
+    public handleError(jsonData?: JSON, customError?: boolean, msg?: Message) {
         this.showError = true;
         //const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : 'ERROR';
         const status = jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
@@ -71,7 +68,8 @@ export class MessageUtilityComponent implements OnInit {
                 prefix = JSON.parse(message).prefix;
                 msg = new Message(status, message, action, suggestion, prefix);
             } else {
-
+                if (!msg)
+                    this.handleUnknownError('Something went wrong!');
             }
             this.displayRawMessage(msg, this.customPlugs)
                 .subscribe((value) => {

@@ -13,8 +13,7 @@ import { DEFAULT_GRAVATAR_URL, DEFAULT_CIMAGE_URL } from '../common/defaultHost'
 import { Validators, FormBuilder, FormGroup } from "@angular/forms";
 import { Subscription } from "rxjs/Rx";
 import { MessageUtilityComponent } from '../mock/message-utility.component';
-import { Error } from '../mock/error';
-import { Config } from '../mock/config';
+import { Message } from '../mock/message';
 
 @Component({
     selector: 'unisecure-login',
@@ -238,7 +237,7 @@ export class LoginComponent implements OnInit {
             if (!this.isUserIdEmpty() && !this.isPasswordEmpty()) {
                 this.assetsSvc.login(this.userId, this.password).subscribe(
                     data => this.onGetUserPreference(data),
-                    error => this.msgUtilityComp.handleError(error, true, new Message('error', 'The login informaiton you provided does not match our records. Please enter your Username and password.', '', '', '')))
+                    error => this.msgUtilityComp.handleError(error, true, new Message('error', 'The login informaiton you provided does not match our records. Please enter your Username and password.', '', '', ''))
                 );
             }
 

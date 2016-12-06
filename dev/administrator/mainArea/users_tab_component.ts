@@ -12,12 +12,15 @@ import { DEFAULT_ADMIN_RESOURCE, DEFAULT_URL, DEFAULT_IMAGE_URL, DEFAULT_IMAGES_
 import 'rxjs/add/operator/map';
 import { MessageService } from '../../services/message.service';
 import { UsersService } from '../../services/User.service';
-import { Message } from '../../message-center/message';
+//import { Message } from '../../message-center/message';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
+import { MessageUtilityComponent } from '../../mock/message-utility.component';
+import { Message } from '../../mock/message';
 
 @Component({
     selector: 'unisecure-users-tab',
     template: `
+    <message-utility></message-utility>
     <div class="topnav uni-card2" style="position:fixed; top:68px; padding:0px; color :white; z-index:1">
         <div style="overflow:auto">
             <div style="overflow:hidden;height:44px;text-align:center;z-index:1">
@@ -294,6 +297,8 @@ export class UsersComponent implements OnInit {
     tempIndex: number;
     tempDelete: string;
     tempUser: any;
+    @ViewChild(MessageUtilityComponent)
+    private msgUtilityComp: MessageUtilityComponent;
     //-------------------------------Alert Modal -------------------------------------------		
 
     constructor(public http: Http, private route: ActivatedRoute, private router: Router, private adminSvc: DataService, private ms: MessageService, private userSvc: UsersService) {
@@ -378,18 +383,21 @@ export class UsersComponent implements OnInit {
     createGroup(name, description) {
         this.task = "createGroup";
         if (description == null) {
-            this.ms.displayRawMessage(new Message('error', 'Description cannot be null or empty.', 'This group will not be saved.', 'There should be some description for a group.', ''), this.customPlugs)
-                .subscribe((value) => console.log(value));
+            // this.ms.displayRawMessage(new Message('error', 'Description cannot be null or empty.', 'This group will not be saved.', 'There should be some description for a group.', ''), this.customPlugs)
+            //     .subscribe((value) => console.log(value));
+            this.msgUtilityComp.handleError(null, true, new Message('error', 'Description cannot be null or empty.', '', '', ''));
         }
         else if (this.newRoles.length == 0) {
-            this.ms.displayRawMessage(new Message('error', 'Roles cannot be null or empty.', 'This group will not be saved.', 'Atleast one role is required.', ''), this.customPlugs)
-                .subscribe((value) => console.log(value));
+            // this.ms.displayRawMessage(new Message('error', 'Roles cannot be null or empty.', 'This group will not be saved.', 'Atleast one role is required.', ''), this.customPlugs)
+            //     .subscribe((value) => console.log(value));
+            this.msgUtilityComp.handleError(null, true, new Message('error', 'Roles cannot be null or empty.', '', '', ''));
         }
         else {
             var body = { "name": name, "description": description, "active": true, "roleIdList": this.newRoles };
             this.adminSvc.putUserGroup(body).subscribe(
                 data => this.onShowMessage(data),
-                error => this.onShowMessage(error),
+                //error => this.onShowMessage(error),
+                error => this.msgUtilityComp.handleError(error),
                 () => { this.loadUserGroups(); }
             );
             this.showNewGroupAddRow = true;
