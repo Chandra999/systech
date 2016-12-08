@@ -6,6 +6,8 @@ import { AssetItem } from '../common/assetItem'
 import { UsersService } from './User.service';
 import 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { MessageService } from '../services/message.service';
+import { Message } from '../message-center/message';
 
 @Injectable()
 export class DataService {
@@ -68,7 +70,7 @@ export class DataService {
     private cardsChangedSource = new BehaviorSubject<boolean>(false);
     navItem$ = this.cardsChangedSource.asObservable();
 
-    constructor(private _http: Http, private userSvc: UsersService) {
+    constructor(private _http: Http, private userSvc: UsersService, private ms: MessageService) {
         this.entitiesResource = DEFAULT_DEVELOPER_RESOURCE + "/entities/true?entityType=";
         this.entityResource = DEFAULT_DEVELOPER_RESOURCE + "/entity";
         this.newAction = DEFAULT_OPERATOR_RESOURCE + "/action";
@@ -124,6 +126,55 @@ export class DataService {
         this.updateDnaResource = DEFAULT_ADMIN_RESOURCE + '/dna/true';
         this.deleteDnaResource = DEFAULT_ADMIN_RESOURCE + '/dna/'
 
+    }
+
+    handleError(jsonData?: JSON, msg?: Message, addPrefix?: boolean, scroll?: boolean, customPlugs?: string[]) {
+        
+        var status:string = '';
+        var message: string = '';
+        var action: string = '';
+        var suggestion: string = '';
+        var prefix: string = '';
+        var jsonMsgs: any = null;
+
+        try {
+            if(jsonData){
+                status=jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
+            }
+            if (addPrefix) {
+                message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
+                jsonMsgs = JSON.parse(message);
+                if (jsonMsgs.msgs != null && jsonMsgs.msgs.length > 0) {
+                    let pfMsg = jsonMsgs.msgs[0];
+                    let pfMsgId = "" + pfMsg.id;
+                    while (pfMsgId.length < 6) {
+                        pfMsgId = "0" + pfMsgId;
+                    }
+                    prefix = jsonMsgs.prefix + pfMsgId + jsonMsgs.langId.charAt(0).toUpperCase();
+                    msg = new Message(status, pfMsg.message, pfMsg.action, pfMsg.suggestion, prefix);
+                }
+            }
+            else if (!msg) {
+                message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
+                jsonMsgs = JSON.parse(message);
+                action = jsonMsgs.msgs[0].action;
+                suggestion = jsonMsgs.msgs[0].suggestion;
+                prefix = jsonMsgs.prefix;
+                msg = new Message(status, message, action, suggestion, prefix);
+            } else {
+                if (!msg)
+                    console.log('Something went wrong!');
+            }
+
+            this.ms.displayRawMessage(msg, customPlugs)
+                .subscribe((value) => {
+                    console.log(value);
+                    if (value)
+                        console.log(value);
+                });
+        } catch (e) {
+
+        }
     }
 
     putPackageProfile(data: any) {

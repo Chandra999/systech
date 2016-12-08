@@ -12,10 +12,8 @@ import { DEFAULT_ADMIN_RESOURCE, DEFAULT_URL, DEFAULT_IMAGE_URL, DEFAULT_IMAGES_
 import 'rxjs/add/operator/map';
 import { MessageService } from '../../services/message.service';
 import { UsersService } from '../../services/User.service';
-//import { Message } from '../../message-center/message';
+import { Message } from '../../message-center/message';
 import { ModalComponent } from 'ng2-bs3-modal/ng2-bs3-modal';
-import { MessageUtilityComponent } from '../../mock/message-utility.component';
-import { Message } from '../../mock/message';
 
 @Component({
     selector: 'unisecure-users-tab',
@@ -296,8 +294,6 @@ export class UsersComponent implements OnInit {
     tempIndex: number;
     tempDelete: string;
     tempUser: any;
-    @ViewChild(MessageUtilityComponent)
-    private msgUtilityComp: MessageUtilityComponent;
     //-------------------------------Alert Modal -------------------------------------------		
 
     constructor(public http: Http, private route: ActivatedRoute, private router: Router, private adminSvc: DataService, private ms: MessageService, private userSvc: UsersService) {
@@ -384,19 +380,18 @@ export class UsersComponent implements OnInit {
         if (description == null) {
             // this.ms.displayRawMessage(new Message('error', 'Description cannot be null or empty.', 'This group will not be saved.', 'There should be some description for a group.', ''), this.customPlugs)
             //     .subscribe((value) => console.log(value));
-            this.msgUtilityComp.handleError(null, true, new Message('error', 'Description cannot be null or empty.', '', '', ''));
+            this.adminSvc.handleError(null, new Message('error', 'Description cannot be null or empty.', 'This group will not be saved.', 'There should be some description for a group.', ''), false, false, this.customPlugs);
         }
         else if (this.newRoles.length == 0) {
             // this.ms.displayRawMessage(new Message('error', 'Roles cannot be null or empty.', 'This group will not be saved.', 'Atleast one role is required.', ''), this.customPlugs)
             //     .subscribe((value) => console.log(value));
-            this.msgUtilityComp.handleError(null, true, new Message('error', 'Roles cannot be null or empty.', '', '', ''));
+            this.adminSvc.handleError(null, new Message('error', 'Roles cannot be null or empty.', 'This group will not be saved.', 'Atleast one role is required.', ''), false, false, this.customPlugs);
         }
         else {
             var body = { "name": name, "description": description, "active": true, "roleIdList": this.newRoles };
             this.adminSvc.putUserGroup(body).subscribe(
                 data => this.onShowMessage(data),
-                //error => this.onShowMessage(error),
-                error => this.msgUtilityComp.handleError(error),
+                error => this.onShowMessage(error),
                 () => { this.loadUserGroups(); }
             );
             this.showNewGroupAddRow = true;
@@ -508,7 +503,8 @@ export class UsersComponent implements OnInit {
             if (check == false) {
                 this.existingGroups[index].groupUsers.push({ id: $event.dragData.uid, userName: $event.dragData.userName, imageURL: $event.dragData.imageURL });
             } else {
-                alert("User already exists in this Group.");
+                //alert("User already exists in this Group.");
+                 this.adminSvc.handleError(null, new Message('error', 'User already exists in this Group.', '', '', ''), false, false, null);
             }
         }
     }
@@ -636,19 +632,21 @@ export class UsersComponent implements OnInit {
             }
         }
         else if (status == 'ERROR') {
-            if (message != null) {
-                let jsonMsgs = JSON.parse(message);
-                if (jsonMsgs.msgs != null && jsonMsgs.msgs.length > 0) {
-                    let msg = jsonMsgs.msgs[0];
-                    let msgId = "" + msg.id;
-                    while (msgId.length < 6) {
-                        msgId = "0" + msgId;
-                    }
-                    let prefix = jsonMsgs.prefix + msgId + jsonMsgs.langId.charAt(0).toUpperCase();
-                    this.ms.displayRawMessage(new Message(status, msg.message, msg.action, msg.suggestion, prefix), this.customPlugs)
-                        .subscribe((value) => console.log(value));
-                }
-            }
+            // if (message != null) {
+            //     let jsonMsgs = JSON.parse(message);
+            //     if (jsonMsgs.msgs != null && jsonMsgs.msgs.length > 0) {
+            //         let msg = jsonMsgs.msgs[0];
+            //         let msgId = "" + msg.id;
+            //         while (msgId.length < 6) {
+            //             msgId = "0" + msgId;
+            //         }
+            //         let prefix = jsonMsgs.prefix + msgId + jsonMsgs.langId.charAt(0).toUpperCase();
+            //         this.ms.displayRawMessage(new Message(status, msg.message, msg.action, msg.suggestion, prefix), this.customPlugs)
+            //             .subscribe((value) => console.log(value));
+            //     }
+            // }
+
+            this.adminSvc.handleError(jsonData, null, true, false, this.customPlugs);
         }
     }
 
