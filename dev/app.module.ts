@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,7 +21,8 @@ import { ForgetPasswordComponent } from './login/forget_password.component';
 import { ResetPasswordComponent } from './login/reset_password.component';
 import { TopBannerComponent } from './topBanner/topBanner.component';
 import { TrashCanComponent } from './trashcan/trashcan.component';
-import {MessageUtilityComponent} from './mock/message-utility.component';
+import { MessageUtilityComponent } from './mock/message-utility.component';
+import { HttpService } from './services/http.service';
 
 @NgModule({
     imports: [
@@ -50,7 +51,14 @@ import {MessageUtilityComponent} from './mock/message-utility.component';
     ],
 
     providers: [
-        { provide: LocationStrategy, useClass: HashLocationStrategy }
+        { provide: LocationStrategy, useClass: HashLocationStrategy },
+        {
+            provide: HttpService,
+            useFactory: (backend: XHRBackend, options: RequestOptions) => {
+                return new HttpService(backend, options);
+            },
+            deps: [XHRBackend, RequestOptions]
+        }
     ],
 
     bootstrap: [AppComponent],

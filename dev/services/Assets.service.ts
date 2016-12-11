@@ -6,6 +6,7 @@ import { AssetItem } from '../common/assetItem'
 import { UsersService } from './User.service';
 import 'rxjs/Rx';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {HttpService} from './http.service';
 
 @Injectable()
 export class DataService {
@@ -68,7 +69,7 @@ export class DataService {
     private cardsChangedSource = new BehaviorSubject<boolean>(false);
     navItem$ = this.cardsChangedSource.asObservable();
 
-    constructor(private _http: Http, private userSvc: UsersService) {
+    constructor(private _http: HttpService, private userSvc: UsersService) {
         this.entitiesResource = DEFAULT_DEVELOPER_RESOURCE + "/entities/true?entityType=";
         this.entityResource = DEFAULT_DEVELOPER_RESOURCE + "/entity";
         this.newAction = DEFAULT_OPERATOR_RESOURCE + "/action";
