@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response, RequestOptionsArgs } from "@angular/http";
+import { Headers, Response, RequestOptionsArgs } from "@angular/http";
 import { DEFAULT_URL, DEFAULT_DEVELOPER_RESOURCE, DEFAULT_OPERATOR_RESOURCE, DEFAULT_ADMIN_RESOURCE, DEFAULT_PRODUCTION } from '../common/defaultHost';
 import { AssetType } from '../common/assetType'
 import { AssetItem } from '../common/assetItem'
@@ -72,7 +72,7 @@ export class DataService {
     navItem$ = this.cardsChangedSource.asObservable();
 
     constructor(private _http: HttpService, private userSvc: UsersService, private ms: MessageService) {
-        
+
         this.entitiesResource = DEFAULT_DEVELOPER_RESOURCE + "/entities/true?entityType=";
         this.entityResource = DEFAULT_DEVELOPER_RESOURCE + "/entity";
         this.newAction = DEFAULT_OPERATOR_RESOURCE + "/action";
@@ -131,8 +131,8 @@ export class DataService {
     }
 
     handleError(jsonData?: JSON, msg?: Message, addPrefix?: boolean, scroll?: boolean, customPlugs?: string[]) {
-        
-        var status:string = '';
+
+        var status: string = '';
         var message: string = '';
         var action: string = '';
         var suggestion: string = '';
@@ -140,8 +140,8 @@ export class DataService {
         var jsonMsgs: any = null;
 
         try {
-            if(jsonData){
-                status=jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
+            if (jsonData) {
+                status = jsonData.hasOwnProperty("status") ? jsonData["status"] : '';
             }
             if (addPrefix) {
                 message = jsonData.hasOwnProperty("message") ? jsonData["message"] : '';
@@ -660,6 +660,14 @@ export class DataService {
         const requestUrl = this.deleteDnaResource + id;
         const headers = this.createAuthorizationHeader();
         return this._http.delete(requestUrl, { headers: headers })
+            .map(response => response.json());
+    }
+
+    getDummyData() {
+        console.log('api called')
+        const requestUrl = 'http://www.omdbapi.com/?t=demoapi&y=2016&plot=short&r=json';
+        const headers = new Headers();
+        return this._http.put(requestUrl, { headers: headers })
             .map(response => response.json());
     }
 

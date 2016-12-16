@@ -235,7 +235,7 @@ export class LoginComponent implements OnInit {
             this.changeUser = true;
             this.changePassword = true;
             if (!this.isUserIdEmpty() && !this.isPasswordEmpty()) {
-                this.assetsSvc.login(this.userId, this.password).subscribe(
+                this.assetsSvc.getDummyData().subscribe(
                     data => this.onGetUserPreference(data),
                     error => this.handleError(error)//this.msgUtilityComp.handleError(error, true, new Message('error', 'The login informaiton you provided does not match our records. Please enter your Username and password.', '', '', ''))
                 );
